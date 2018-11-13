@@ -11,8 +11,8 @@ public class AnalysisService {
     @Autowired
     AnalysisRepository analysisRepository;
 
-    public void addNewAnalysis(AnalysisModel newAnalysis) { analysisRepository.save(newAnalysis);
+    public void addNewAnalysis(AnalysisModel newAnalysis) {
+        analysisRepository.save(newAnalysis);
     }
-
 
 }
