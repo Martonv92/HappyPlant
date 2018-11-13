@@ -1,4 +1,4 @@
-package model.analysis;
+package model.userdata;
 
 import model.enums.SoilType;
 

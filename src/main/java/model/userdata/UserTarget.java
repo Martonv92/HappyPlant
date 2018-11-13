@@ -1,4 +1,4 @@
-package model.userTarget;
+package model.userdata;
 
 public class UserTarget {
 

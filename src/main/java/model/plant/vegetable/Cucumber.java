@@ -1,6 +1,6 @@
-package model.vegetables;
+package model.plant.vegetable;
 
-import model.basicType.Plant;
+import model.plant.Plant;
 
 public class Cucumber extends Plant {
 

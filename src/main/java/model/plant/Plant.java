@@ -1,4 +1,4 @@
-package model.basicType;
+package model.plant;
 
 public abstract class Plant {
 
