@@ -1,25 +1,25 @@
-package Model.Analysis;
+package model.analysis;
 
 public class Analysis {
 
-    Double nitrogen;
-    Double phosphorus;
-    Double kalium;
+    private Double nitrogen;
+    private Double phosphorus;
+    private Double kalium;
 
-    Double magnesium;
-    Double calcium;
+    private Double magnesium;
+    private Double calcium;
 
-    Double iron;
-    Double zinc;
-    Double boron;
-    Double copper;
-    Double natrium;
-    Double chlorine;
-    Double manganese;
-    Double molybdenum;
+    private Double iron;
+    private Double zinc;
+    private Double boron;
+    private Double copper;
+    private Double natrium;
+    private Double chlorine;
+    private Double manganese;
+    private Double molybdenum;
 
-    Double PH;
-    Double EC;
+    private Double PH;
+    private Double EC;
 
     public Analysis(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
         this.nitrogen = nitrogen;
