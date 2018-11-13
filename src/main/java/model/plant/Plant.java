@@ -1,24 +1,60 @@
 package model.plant;
 
-public abstract class Plant {
+import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+@Entity
+public class Plant {
+
+    @NotNull
+    @NotEmpty
     private String plantName;
 
+    @NotNull
+    @NotEmpty
     private Double idealPH;
+
+    @NotNull
+    @NotEmpty
     private Double idealEC;
 
-    private Integer daysUntilHarvest;
-    private Integer rootDepthInCentimeters;
-    Double maxYieldInTonsPerKm2;
 
+    @NotNull
+    @NotEmpty
+    private Integer daysUntilHarvest;
+
+    @NotNull
+    @NotEmpty
+    private Integer rootDepthInCentimeters;
+
+    @NotNull
+    @NotEmpty
+    private Integer maxYieldInTonsPerKm2;
+
+
+    @NotNull
+    @NotEmpty
     private Double nitrogenNeeds;
+
+    @NotNull
+    @NotEmpty
     private Double phosphorusNeeds;
+
+    @NotNull
+    @NotEmpty
     private Double kaliumNeeds;
 
+
+    @NotNull
+    @NotEmpty
     private Double magnesiumNeeds;
+
+    @NotNull
+    @NotEmpty
     private Double calciumNeeds;
 
-    private Double ironNeeds;
+    /*private Double ironNeeds;
     private Double zincNeeds;
     private Double boronNeeds;
     private Double copperNeeds;
@@ -27,7 +63,7 @@ public abstract class Plant {
     private Double manganeseNeeds;
     private Double molybdenumNeeds;
     private Double sufurNeeds;
-    private Double siliconNeeds;
+    private Double siliconNeeds;*/
 
 
     public Plant(String plantName,
@@ -37,16 +73,16 @@ public abstract class Plant {
 
                  Integer daysUntilHarvest,
                  Integer rootDepthInCentimeters,
-                 Double maxYieldInTonsPerKm2,
+                 Integer maxYieldInTonsPerKm2,
 
                  Double nitrogenNeeds,
                  Double phosphorusNeeds,
                  Double kaliumNeeds,
 
                  Double magnesiumNeeds,
-                 Double calciumNeeds,
+                 Double calciumNeeds
 
-                 Double ironNeeds,
+                 /*Double ironNeeds,
                  Double zincNeeds,
                  Double boronNeeds,
                  Double copperNeeds,
@@ -55,7 +91,7 @@ public abstract class Plant {
                  Double manganeseNeeds,
                  Double molybdenumNeeds,
                  Double sufurNeeds,
-                 Double siliconNeeds)
+                 Double siliconNeeds*/)
     {
 
         this.plantName = plantName;
@@ -69,7 +105,7 @@ public abstract class Plant {
         this.kaliumNeeds = kaliumNeeds;
         this.magnesiumNeeds = magnesiumNeeds;
         this.calciumNeeds = calciumNeeds;
-        this.ironNeeds = ironNeeds;
+        /*this.ironNeeds = ironNeeds;
         this.zincNeeds = zincNeeds;
         this.boronNeeds = boronNeeds;
         this.copperNeeds = copperNeeds;
@@ -78,6 +114,6 @@ public abstract class Plant {
         this.manganeseNeeds = manganeseNeeds;
         this.molybdenumNeeds = molybdenumNeeds;
         this.sufurNeeds = sufurNeeds;
-        this.siliconNeeds = siliconNeeds;
+        this.siliconNeeds = siliconNeeds;*/
     }
 }

@@ -20,7 +20,7 @@ public class PlantDatabaseInit {
     @Bean
     public CommandLineRunner initialize() {
         return (String... args) -> {
-            //plantRepository.save(new Plant());
+            plantRepository.save(new Plant("pickling cucumber", 5.5, 2.0, 180, 20, 180, 486.0, 252.0, 720.0, 252.0, 400.0));
         };
 
     }
