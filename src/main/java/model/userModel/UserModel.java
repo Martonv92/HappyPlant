@@ -2,14 +2,13 @@ package model.userModel;
 
 import model.userdata.Plan;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserModel {
@@ -22,12 +21,12 @@ public class UserModel {
     @NotEmpty
     private String name;
 
-    @OneToMany
-    private Set<Plan> plans = new HashSet<>();
-
     @NotNull
     @NotEmpty
     private String userName;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
 
     @NotNull
     @NotEmpty
@@ -37,8 +36,16 @@ public class UserModel {
     @NotNull
 
     @NotEmpty
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @ElementCollection
+    @CollectionTable(name = "Plan")
+    @Column(name = "plan")
+    List<Plan> planList;
+
+    @OneToMany
+    private Set<Plan> plans = new HashSet<>();
 
     public UserModel() {
     }

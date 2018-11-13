@@ -1,9 +1,20 @@
 package model.userdata;
 
+import model.plant.Plant;
+
 public class UserTarget {
 
     Double userArea;
     Double tonsPerKm2;
+    Plant plant;
+
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public void setPlant(Plant plant) {
+        this.plant = plant;
+    }
 
     public Double getUserArea() {
         return userArea;
