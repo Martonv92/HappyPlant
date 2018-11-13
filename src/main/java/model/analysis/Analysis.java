@@ -1,5 +1,7 @@
 package model.analysis;
 
+import model.enums.SoilType;
+
 public class Analysis {
 
     private Double nitrogen;
@@ -20,6 +22,8 @@ public class Analysis {
 
     private Double PH;
     private Double EC;
+
+    private SoilType soilType;
 
     public Analysis(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
         this.nitrogen = nitrogen;

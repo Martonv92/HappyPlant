@@ -24,7 +24,7 @@ public abstract class Plant {
     private Double idealEC;
 
     private Integer daysUntilHarvest;
-    private Integer soilDepthInCentimeters;
+    private Integer rootDepthInCentimeters;
 
     public void calculate(){
     }
