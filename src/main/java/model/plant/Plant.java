@@ -1,15 +1,21 @@
 package model.plant;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Plant {
 
+    @Id
+    @GeneratedValue
+    private Integer id;
+
     @NotNull
     @NotEmpty
-    private String plantName;
+    private String plantType;
 
     @NotNull
     @NotEmpty
@@ -30,7 +36,7 @@ public class Plant {
 
     @NotNull
     @NotEmpty
-    private Integer maxYieldInTonsPerKm2;
+    Integer maxYieldInTonsPerHectar;
 
 
     @NotNull
@@ -66,14 +72,14 @@ public class Plant {
     private Double siliconNeeds;*/
 
 
-    public Plant(String plantName,
+    public Plant(String plantType,
 
                  Double idealPH,
                  Double idealEC,
 
                  Integer daysUntilHarvest,
                  Integer rootDepthInCentimeters,
-                 Integer maxYieldInTonsPerKm2,
+                 Integer maxYieldInTonsPerHectar,
 
                  Double nitrogenNeeds,
                  Double phosphorusNeeds,
@@ -94,12 +100,12 @@ public class Plant {
                  Double siliconNeeds*/)
     {
 
-        this.plantName = plantName;
+        this.plantType = plantType;
         this.idealPH = idealPH;
         this.idealEC = idealEC;
         this.daysUntilHarvest = daysUntilHarvest;
         this.rootDepthInCentimeters = rootDepthInCentimeters;
-        this.maxYieldInTonsPerKm2 = maxYieldInTonsPerKm2;
+        this.maxYieldInTonsPerHectar = maxYieldInTonsPerHectar;
         this.nitrogenNeeds = nitrogenNeeds;
         this.phosphorusNeeds = phosphorusNeeds;
         this.kaliumNeeds = kaliumNeeds;

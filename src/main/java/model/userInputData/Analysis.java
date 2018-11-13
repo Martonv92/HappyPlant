@@ -3,6 +3,7 @@ package model.userInputData;
 import model.enums.SoilType;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
@@ -48,14 +49,14 @@ public class Analysis {
     @NotEmpty
     private Double calcium;
 
-    private Double iron;
+    /*private Double iron;
     private Double zinc;
     private Double boron;
     private Double copper;
     private Double natrium;
     private Double chlorine;
     private Double manganese;
-    private Double molybdenum;
+    private Double molybdenum;*/
 
     @Min(0)
     @Max(12)
@@ -69,6 +70,8 @@ public class Analysis {
     @NotEmpty
     private Double EC;
 
+    @Enumerated
+    @NotNull
     private SoilType soilType;
 
     public Analysis(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
@@ -135,9 +138,8 @@ public class Analysis {
 
     public void setCalcium(Double calcium) {
         this.calcium = calcium;
-    }
 
-    public Double getIron() {
+    /*public Double getIron() {
         return iron;
     }
 
@@ -198,6 +200,6 @@ public class Analysis {
     }
 
     public void setMolybdenum(Double molybdenum) {
-        this.molybdenum = molybdenum;
+        this.molybdenum = molybdenum;*/
     }
 }
