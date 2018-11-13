@@ -15,4 +15,6 @@ public class Plan {
     private Integer userId;
     private Analysis analysis;
 
+    //NEEDS CALCULATION RESULTS
+
 }

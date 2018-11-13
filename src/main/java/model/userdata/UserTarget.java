@@ -2,10 +2,23 @@ package model.userdata;
 
 import model.plant.Plant;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class UserTarget {
 
+    //tonsPerKm2 needs to check MaxYield!
+
+    @NotEmpty
+    @NotNull
     Double userArea;
+
+    @NotNull
+    @NotEmpty
     Double tonsPerKm2;
+
+    @NotNull
+    @NotEmpty
     Plant plant;
 
     public Plant getPlant() {

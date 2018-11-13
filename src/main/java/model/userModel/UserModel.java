@@ -37,7 +37,13 @@ public class UserModel {
 
     @NotEmpty
     @Column(nullable = false, unique = true)
+    @Email
     private String email;
+
+    @NotEmpty
+    @Column(nullable = false, unique = true)
+    @Email
+    private String backupEmail;
 
     @ElementCollection
     @CollectionTable(name = "Plan")

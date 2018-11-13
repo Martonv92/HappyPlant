@@ -25,6 +25,7 @@ public abstract class Plant {
 
     private Integer daysUntilHarvest;
     private Integer rootDepthInCentimeters;
+    private Double maxYieldInTonnesPerKm2;
 
     public void calculate(){
     }
