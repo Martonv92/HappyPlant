@@ -1,16 +1,19 @@
 package model.userModel;
 
-import model.userInputData.Plan;
+import model.userInputData.AnalysisModel;
+import model.userInputData.PlanModel;
+import model.userInputData.TargetModel;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+@Entity
+@Table(name = "User")
 public class UserModel {
 
     @Id
@@ -32,9 +35,6 @@ public class UserModel {
     @NotEmpty
     private String hashedPassword;
 
-    @Email
-    @NotNull
-
     @NotEmpty
     @Column(nullable = false, unique = true)
     @Email
@@ -45,22 +45,32 @@ public class UserModel {
     @Email
     private String backupEmail;
 
-    @ElementCollection
-    @CollectionTable(name = "Plan")
-    @Column(name = "plan")
-    List<Plan> planList;
+    @OneToMany(mappedBy = "userId")
+    private List<TargetModel> targets;
 
-    @OneToMany
-    private Set<Plan> planSet = new HashSet<>();
+    @OneToMany(mappedBy = "userId")
+    private List<PlanModel> planModels;
+
+    @OneToMany(mappedBy = "userId")
+    private List<AnalysisModel> analyses;
 
     public UserModel() {
     }
 
-    public UserModel(String name, String userName, String password, String email) {
+    public UserModel(String name, String userName, String password, String email, String backupEmail) {
         this.name = name;
         this.userName = userName;
         this.hashedPassword = password;
         this.email = email;
+        this.backupEmail = backupEmail;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String password) {
+        this.hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public Integer getId() {
@@ -83,16 +93,12 @@ public class UserModel {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -101,5 +107,13 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getBackupEmail() {
+        return backupEmail;
+    }
+
+    public void setBackupEmail(String backupEmail) {
+        this.backupEmail = backupEmail;
     }
 }

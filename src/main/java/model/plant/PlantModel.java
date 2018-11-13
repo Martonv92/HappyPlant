@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Plant {
+public class PlantModel {
 
     @Id
     @GeneratedValue
@@ -36,7 +36,7 @@ public class Plant {
 
     @NotNull
     @NotEmpty
-    Integer maxYieldInTonsPerHectar;
+    private Integer maxYieldInTonsPerHectar;
 
 
     @NotNull
@@ -72,21 +72,21 @@ public class Plant {
     private Double siliconNeeds;*/
 
 
-    public Plant(String plantType,
+    public PlantModel(String plantType,
 
-                 Double idealPH,
-                 Double idealEC,
+                      Double idealPH,
+                      Double idealEC,
 
-                 Integer daysUntilHarvest,
-                 Integer rootDepthInCentimeters,
-                 Integer maxYieldInTonsPerHectar,
+                      Integer daysUntilHarvest,
+                      Integer rootDepthInCentimeters,
+                      Integer maxYieldInTonsPerHectar,
 
-                 Double nitrogenNeeds,
-                 Double phosphorusNeeds,
-                 Double kaliumNeeds,
+                      Double nitrogenNeeds,
+                      Double phosphorusNeeds,
+                      Double kaliumNeeds,
 
-                 Double magnesiumNeeds,
-                 Double calciumNeeds
+                      Double magnesiumNeeds,
+                      Double calciumNeeds
 
                  /*Double ironNeeds,
                  Double zincNeeds,

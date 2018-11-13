@@ -2,10 +2,7 @@ package model.userInputData;
 
 import model.enums.SoilType;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +10,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class Analysis {
+@Table(name = "AnalysisModel")
+public class AnalysisModel {
+
+    @OneToOne
+    private Integer userId;
 
     @NotEmpty
     @Temporal(TemporalType.DATE)
@@ -74,7 +75,7 @@ public class Analysis {
     @NotNull
     private SoilType soilType;
 
-    public Analysis(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
+    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
         this.kalium = kalium;

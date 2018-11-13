@@ -4,13 +4,12 @@ package model.userInputData;
 import org.springframework.beans.factory.annotation.Autowired;
 import repository.PlantRepository;
 
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Plan {
+@Table(name = "PlanModel")
+public class PlanModel {
 
     @Autowired
     PlantRepository plantRepository;
@@ -18,8 +17,12 @@ public class Plan {
     @Temporal(TemporalType.DATE)
     private Date planDate;
 
-    private UserTarget userTarget;
+    private TargetModel targetModel;
+
+    @OneToOne
     private Integer userId;
-    private Analysis analysis;
+
+    @OneToOne
+    private AnalysisModel analysisModel;
 
 }

@@ -1,15 +1,17 @@
 package model.userInputData;
 
-import model.plant.Plant;
+import model.plant.PlantModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import repository.PlantRepository;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class UserTarget {
+@Table(name = "Target")
+public class TargetModel {
 
     //tonsPerHectar needs to check MaxYield!
 
@@ -26,25 +28,25 @@ public class UserTarget {
 
     @NotNull
     @NotEmpty
-    Plant plantType;
+    PlantModel plantModelType;
 
-    public UserTarget(@NotEmpty @NotNull Double userArea, @NotNull @NotEmpty Integer tonsPerHectar, @NotNull @NotEmpty Plant plantType) {
+    public TargetModel(@NotEmpty @NotNull Double userArea, @NotNull @NotEmpty Integer tonsPerHectar, @NotNull @NotEmpty PlantModel plantModelType) {
         this.userArea = userArea;
 
         //needs solution
-        if(tonsPerHectar > )
+        /*if(tonsPerHectar > )
             this.tonsPerHectar = tonsPerHectar;
-        else ();
+        else ();*/
 
-        this.plantType = plantType;
+        this.plantModelType = plantModelType;
     }
 
-    public Plant getPlantType() {
-        return plantType;
+    public PlantModel getPlantModelType() {
+        return plantModelType;
     }
 
-    public void setPlantType(Plant plantType) {
-        this.plantType = plantType;
+    public void setPlantModelType(PlantModel plantModelType) {
+        this.plantModelType = plantModelType;
     }
 
     public Double getUserArea() {
@@ -55,11 +57,11 @@ public class UserTarget {
         this.userArea = userArea;
     }
 
-    public Double getTonsPerHectar() {
+    public Integer getTonsPerHectar() {
         return tonsPerHectar;
     }
 
-    public void setTonsPerHectar(Double tonsPerHectar) {
+    public void setTonsPerHectar(Integer tonsPerHectar) {
         this.tonsPerHectar = tonsPerHectar;
     }
 }
