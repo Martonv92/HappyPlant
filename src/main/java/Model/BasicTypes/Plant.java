@@ -21,6 +21,66 @@ public abstract class Plant {
     Double idealPH;
     Double idealEC;
 
+    public void setNitrogenNeeds(Double nitrogenNeeds) {
+        this.nitrogenNeeds = nitrogenNeeds;
+    }
+
+    public void setPhosphorusNeeds(Double phosphorusNeeds) {
+        this.phosphorusNeeds = phosphorusNeeds;
+    }
+
+    public void setKaliumNeeds(Double kaliumNeeds) {
+        this.kaliumNeeds = kaliumNeeds;
+    }
+
+    public void setMagnesiumNeeds(Double magnesiumNeeds) {
+        this.magnesiumNeeds = magnesiumNeeds;
+    }
+
+    public void setCalciumNeeds(Double calciumNeeds) {
+        this.calciumNeeds = calciumNeeds;
+    }
+
+    public void setIronNeeds(Double ironNeeds) {
+        this.ironNeeds = ironNeeds;
+    }
+
+    public void setZincNeeds(Double zincNeeds) {
+        this.zincNeeds = zincNeeds;
+    }
+
+    public void setBoronNeeds(Double boronNeeds) {
+        this.boronNeeds = boronNeeds;
+    }
+
+    public void setCopperNeeds(Double copperNeeds) {
+        this.copperNeeds = copperNeeds;
+    }
+
+    public void setNatriumNeeds(Double natriumNeeds) {
+        this.natriumNeeds = natriumNeeds;
+    }
+
+    public void setChlorineNeeds(Double chlorineNeeds) {
+        this.chlorineNeeds = chlorineNeeds;
+    }
+
+    public void setManganeseNeeds(Double manganeseNeeds) {
+        this.manganeseNeeds = manganeseNeeds;
+    }
+
+    public void setMolybdenumNeeds(Double molybdenumNeeds) {
+        this.molybdenumNeeds = molybdenumNeeds;
+    }
+
+    public void setIdealPH(Double idealPH) {
+        this.idealPH = idealPH;
+    }
+
+    public void setIdealEC(Double idealEC) {
+        this.idealEC = idealEC;
+    }
+
     public Double getNitrogenNeeds() {
         return nitrogenNeeds;
     }
