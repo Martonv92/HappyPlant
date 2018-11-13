@@ -1,8 +1,6 @@
 package model.plant;
 
-import model.userdata.Plan;
-
-public class Plant {
+public abstract class Plant {
 
     private String plantName;
 
@@ -11,7 +9,7 @@ public class Plant {
 
     private Integer daysUntilHarvest;
     private Integer rootDepthInCentimeters;
-    private Double maxYieldInTonnesPerKm2;
+    Double maxYieldInTonsPerKm2;
 
     private Double nitrogenNeeds;
     private Double phosphorusNeeds;
@@ -31,10 +29,6 @@ public class Plant {
     private Double sufurNeeds;
     private Double siliconNeeds;
 
-    public Plan calculate(){
-
-        return plan;
-    }
 
     public Plant(String plantName,
 
@@ -43,7 +37,7 @@ public class Plant {
 
                  Integer daysUntilHarvest,
                  Integer rootDepthInCentimeters,
-                 Double maxYieldInTonnesPerKm2,
+                 Double maxYieldInTonsPerKm2,
 
                  Double nitrogenNeeds,
                  Double phosphorusNeeds,
@@ -69,7 +63,7 @@ public class Plant {
         this.idealEC = idealEC;
         this.daysUntilHarvest = daysUntilHarvest;
         this.rootDepthInCentimeters = rootDepthInCentimeters;
-        this.maxYieldInTonnesPerKm2 = maxYieldInTonnesPerKm2;
+        this.maxYieldInTonsPerKm2 = maxYieldInTonsPerKm2;
         this.nitrogenNeeds = nitrogenNeeds;
         this.phosphorusNeeds = phosphorusNeeds;
         this.kaliumNeeds = kaliumNeeds;

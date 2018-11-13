@@ -21,7 +21,6 @@ public class PlantDatabaseInit {
     public CommandLineRunner initialize() {
         return (String... args) -> {
             //plantRepository.save(new Plant());
-
         };
 
     }

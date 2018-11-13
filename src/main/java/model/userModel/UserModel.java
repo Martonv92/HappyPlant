@@ -1,6 +1,6 @@
 package model.userModel;
 
-import model.userdata.Plan;
+import model.userInputData.Plan;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -51,7 +51,7 @@ public class UserModel {
     List<Plan> planList;
 
     @OneToMany
-    private Set<Plan> plans = new HashSet<>();
+    private Set<Plan> planSet = new HashSet<>();
 
     public UserModel() {
     }

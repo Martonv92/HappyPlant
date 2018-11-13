@@ -1,7 +1,8 @@
-package model.userdata;
+package model.userInputData;
 
 import model.enums.SoilType;
 
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@Entity
 public class Analysis {
 
     @NotEmpty
