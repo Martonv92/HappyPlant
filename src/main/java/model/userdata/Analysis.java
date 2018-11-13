@@ -4,33 +4,40 @@ import model.enums.SoilType;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class Analysis {
 
-    @NotNull
+
     @Min(0)
     @Max(5000)
+    @NotNull
+    @NotEmpty
     private Double nitrogen;
 
     @Min(0)
     @Max(5000)
     @NotNull
+    @NotEmpty
     private Double phosphorus;
 
     @Min(0)
     @Max(5000)
     @NotNull
+    @NotEmpty
     private Double kalium;
 
     @Min(0)
     @Max(5000)
     @NotNull
+    @NotEmpty
     private Double magnesium;
 
     @Min(0)
     @Max(5000)
     @NotNull
+    @NotEmpty
     private Double calcium;
 
     private Double iron;
@@ -45,11 +52,13 @@ public class Analysis {
     @Min(0)
     @Max(12)
     @NotNull
+    @NotEmpty
     private Double PH;
 
     @Min(0)
     @Max(20)
     @NotNull
+    @NotEmpty
     private Double EC;
 
     private SoilType soilType;

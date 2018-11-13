@@ -1,11 +1,16 @@
 package model.userModel;
 
+import model.userdata.Plan;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserModel {
 
@@ -16,6 +21,9 @@ public class UserModel {
     @NotNull
     @NotEmpty
     private String name;
+
+    @OneToMany
+    private Set<Plan> plans = new HashSet<>();
 
     @NotNull
     @NotEmpty
