@@ -72,6 +72,10 @@ public class UserModel {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getHashedPassword() {
         return hashedPassword;
     }
