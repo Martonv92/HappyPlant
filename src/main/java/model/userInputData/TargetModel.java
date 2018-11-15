@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Target")
 public class TargetModel {
 
-    //tonsPerHectar needs to check MaxYield!
 
     @Autowired
     private PlantRepository plantRepository;
@@ -42,12 +41,12 @@ public class TargetModel {
 
     public TargetModel(@NotEmpty @NotNull Double userArea, @NotNull @NotEmpty Integer tonsPerHectar, @NotNull @NotEmpty PlantModel plantModelType) {
         this.userArea = userArea;
-        this.tonsPerHectar = tonsPerHectar;
 
-        //needs solution
-        /*if(tonsPerHectar > )
+        if(tonsPerHectar > plantModelType.getMaxYieldInTonsPerHectar()){
+            this.tonsPerHectar = plantModelType.getMaxYieldInTonsPerHectar();
+        } else {
             this.tonsPerHectar = tonsPerHectar;
-        else ();*/
+        }
 
         this.plantModelType = plantModelType;
     }

@@ -8,5 +8,3 @@ import org.springframework.stereotype.Component;
 public interface PlantRepository extends JpaRepository<PlantModel, Integer> {
     PlantModel findByPlantName(String plantName);
 }
-
-//

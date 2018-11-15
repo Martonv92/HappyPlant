@@ -68,7 +68,7 @@ public class PlantModel {
     private Double chlorineNeeds;
     private Double manganeseNeeds;
     private Double molybdenumNeeds;
-    private Double sufurNeeds;
+    private Double sulfurNeeds;
     private Double siliconNeeds;*/
 
 
@@ -96,7 +96,7 @@ public class PlantModel {
                  Double chlorineNeeds,
                  Double manganeseNeeds,
                  Double molybdenumNeeds,
-                 Double sufurNeeds,
+                 Double sulfurNeeds,
                  Double siliconNeeds*/)
     {
 
@@ -119,7 +119,103 @@ public class PlantModel {
         this.chlorineNeeds = chlorineNeeds;
         this.manganeseNeeds = manganeseNeeds;
         this.molybdenumNeeds = molybdenumNeeds;
-        this.sufurNeeds = sufurNeeds;
+        this.sulfurNeeds = sufurNeeds;
         this.siliconNeeds = siliconNeeds;*/
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPlantType() {
+        return plantType;
+    }
+
+    public void setPlantType(String plantType) {
+        this.plantType = plantType;
+    }
+
+    public Double getIdealPH() {
+        return idealPH;
+    }
+
+    public void setIdealPH(Double idealPH) {
+        this.idealPH = idealPH;
+    }
+
+    public Double getIdealEC() {
+        return idealEC;
+    }
+
+    public void setIdealEC(Double idealEC) {
+        this.idealEC = idealEC;
+    }
+
+    public Integer getDaysUntilHarvest() {
+        return daysUntilHarvest;
+    }
+
+    public void setDaysUntilHarvest(Integer daysUntilHarvest) {
+        this.daysUntilHarvest = daysUntilHarvest;
+    }
+
+    public Integer getRootDepthInCentimeters() {
+        return rootDepthInCentimeters;
+    }
+
+    public void setRootDepthInCentimeters(Integer rootDepthInCentimeters) {
+        this.rootDepthInCentimeters = rootDepthInCentimeters;
+    }
+
+    public Integer getMaxYieldInTonsPerHectar() {
+        return maxYieldInTonsPerHectar;
+    }
+
+    public void setMaxYieldInTonsPerHectar(Integer maxYieldInTonsPerHectar) {
+        this.maxYieldInTonsPerHectar = maxYieldInTonsPerHectar;
+    }
+
+    public Double getNitrogenNeeds() {
+        return nitrogenNeeds;
+    }
+
+    public void setNitrogenNeeds(Double nitrogenNeeds) {
+        this.nitrogenNeeds = nitrogenNeeds;
+    }
+
+    public Double getPhosphorusNeeds() {
+        return phosphorusNeeds;
+    }
+
+    public void setPhosphorusNeeds(Double phosphorusNeeds) {
+        this.phosphorusNeeds = phosphorusNeeds;
+    }
+
+    public Double getKaliumNeeds() {
+        return kaliumNeeds;
+    }
+
+    public void setKaliumNeeds(Double kaliumNeeds) {
+        this.kaliumNeeds = kaliumNeeds;
+    }
+
+    public Double getMagnesiumNeeds() {
+        return magnesiumNeeds;
+    }
+
+    public void setMagnesiumNeeds(Double magnesiumNeeds) {
+        this.magnesiumNeeds = magnesiumNeeds;
+    }
+
+    public Double getCalciumNeeds() {
+        return calciumNeeds;
+    }
+
+    public void setCalciumNeeds(Double calciumNeeds) {
+        this.calciumNeeds = calciumNeeds;
     }
 }
