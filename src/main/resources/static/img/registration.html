@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User registration</title>
+</head>
+<body>
+    <form action="/registration" method="post">
+        <input type="text" placeholder="username" name="user_name">
+        <input type="text" placeholder="first name" name="first_name">
+        <input type="text" placeholder="last name" name="last_name">
+        <input type="password" placeholder="password" name="password">
+        <input type="email" placeholder="email" name="email">
+        <input type="email" placeholder="backup email" name="backup_email">
+        <input type="date" placeholder="birth date" name="birth_date">
+        <button type="submit" name="user_reg" id="user_reg">Register</button>
+    </form>
+</body>
+</html>

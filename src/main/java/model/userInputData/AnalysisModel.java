@@ -13,6 +13,10 @@ import java.util.Date;
 @Table(name = "AnalysisModel")
 public class AnalysisModel {
 
+    @Id
+    @GeneratedValue
+    private Integer analysisId;
+
     @OneToOne
     private Integer userId;
 
@@ -74,6 +78,10 @@ public class AnalysisModel {
     @Enumerated
     @NotNull
     private SoilType soilType;
+
+
+    public AnalysisModel() {
+    }
 
     public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
         this.nitrogen = nitrogen;

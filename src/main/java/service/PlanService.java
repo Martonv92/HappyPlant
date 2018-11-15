@@ -11,6 +11,5 @@ public class PlanService {
     @Autowired
     PlanRepository planRepository;
 
-    public void addNewPlan(PlanModel newPlan) { planRepository.save(newPlan);
-    }
+    public void addNewPlan(PlanModel newPlan) { planRepository.save(newPlan); }
 }

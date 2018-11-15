@@ -22,18 +22,18 @@ public class UserModel {
 
     @NotNull
     @NotEmpty
-    private String name;
+    private String firstName;
 
     @NotNull
     @NotEmpty
-    private String userName;
+    private String lastName;
 
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
     @NotNull
     @NotEmpty
-    private String hashedPassword;
+    private String userName;
 
     @NotEmpty
     @Column(nullable = false, unique = true)
@@ -45,24 +45,31 @@ public class UserModel {
     @Email
     private String backupEmail;
 
+    @NotNull
+    @NotEmpty
+    private String hashedPassword;
+
+
     @OneToMany(mappedBy = "userId")
-    private List<TargetModel> targets;
+    private List<TargetModel> targetModels;
 
     @OneToMany(mappedBy = "userId")
     private List<PlanModel> planModels;
 
     @OneToMany(mappedBy = "userId")
-    private List<AnalysisModel> analyses;
+    private List<AnalysisModel> analysisModels;
 
     public UserModel() {
     }
 
-    public UserModel(String name, String userName, String password, String email, String backupEmail) {
-        this.name = name;
+    public UserModel(String firstName, String lastName, String userName, String password, String email, String backupEmail, Date dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userName = userName;
         this.hashedPassword = password;
         this.email = email;
         this.backupEmail = backupEmail;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getHashedPassword() {
@@ -81,12 +88,20 @@ public class UserModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserName() {
@@ -116,4 +131,6 @@ public class UserModel {
     public void setBackupEmail(String backupEmail) {
         this.backupEmail = backupEmail;
     }
+
+
 }

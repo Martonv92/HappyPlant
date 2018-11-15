@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import repository.PlantRepository;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -18,6 +20,11 @@ public class TargetModel {
     @Autowired
     private PlantRepository plantRepository;
 
+
+    @Id
+    @GeneratedValue
+    private Integer targetId;
+
     @NotEmpty
     @NotNull
     Double userArea;
@@ -30,8 +37,12 @@ public class TargetModel {
     @NotEmpty
     PlantModel plantModelType;
 
+    public TargetModel() {
+    }
+
     public TargetModel(@NotEmpty @NotNull Double userArea, @NotNull @NotEmpty Integer tonsPerHectar, @NotNull @NotEmpty PlantModel plantModelType) {
         this.userArea = userArea;
+        this.tonsPerHectar = tonsPerHectar;
 
         //needs solution
         /*if(tonsPerHectar > )
@@ -63,5 +74,13 @@ public class TargetModel {
 
     public void setTonsPerHectar(Integer tonsPerHectar) {
         this.tonsPerHectar = tonsPerHectar;
+    }
+
+    public Integer getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(Integer targetId) {
+        this.targetId = targetId;
     }
 }

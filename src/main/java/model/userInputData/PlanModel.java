@@ -2,7 +2,7 @@ package model.userInputData;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import repository.PlantRepository;
+import repository.PlanRepository;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,7 +12,11 @@ import java.util.Date;
 public class PlanModel {
 
     @Autowired
-    PlantRepository plantRepository;
+    PlanRepository planRepository;
+
+    @Id
+    @GeneratedValue
+    private Integer planId;
 
     @Temporal(TemporalType.DATE)
     private Date planDate;
@@ -25,4 +29,8 @@ public class PlanModel {
     @OneToOne
     private AnalysisModel analysisModel;
 
+    //needs more fields
+
+    public PlanModel() {
+    }
 }
