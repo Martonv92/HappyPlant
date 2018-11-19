@@ -1,16 +1,14 @@
 package happyplant.model;
 
 import org.mindrot.jbcrypt.BCrypt;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "Usr")
-public class UserModel {
+public class Usr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,22 +36,22 @@ public class UserModel {
     @NotEmpty
     private String hashedPassword;
 
-    @OneToMany(mappedBy = "user", targetEntity = PlanModel.class)
-    private List<PlanModel> planModels;
+    @OneToMany(mappedBy = "user", targetEntity = Plan.class)
+    private List<Plan> plans;
 
-    @OneToMany(mappedBy = "user", targetEntity = AnalysisModel.class)
-    private List<AnalysisModel> analysisModels;
+    @OneToMany(mappedBy = "user", targetEntity = Analysis.class)
+    private List<Analysis> analyses;
 
-    public UserModel() {
+    public Usr() {
     }
 
-    public UserModel(String firstName, String lastName, String userName, String password, String email, String backupEmail) {
+    public Usr(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String userName, @NotEmpty @Email String email, @NotEmpty @Email String backupEmail, @NotEmpty String hashedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.hashedPassword = password;
         this.email = email;
         this.backupEmail = backupEmail;
+        this.hashedPassword = BCrypt.hashpw(hashedPassword, BCrypt.gensalt());
     }
 
     public void setUserName(String userName) {

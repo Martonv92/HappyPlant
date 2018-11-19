@@ -1,10 +1,10 @@
 package happyplant.repository;
 
-import happyplant.model.PlantModel;
+import happyplant.model.Plant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface PlantRepository extends JpaRepository<PlantModel, Integer> {
-    PlantModel findByPlantName(String plantName);
+public interface PlantRepository extends JpaRepository<Plant, Integer> {
+    Plant findByPlantName(String plantName);
 }

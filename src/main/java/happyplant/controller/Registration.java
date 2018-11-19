@@ -1,6 +1,6 @@
 package happyplant.controller;
 
-import happyplant.model.UserModel;
+import happyplant.model.Usr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import happyplant.service.RegistrationService;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class RegistrationController {
+public class Registration {
 
     @Autowired
     RegistrationService registrationService;
@@ -21,7 +21,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String registration(@RequestParam("user_name") String userName, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName, @RequestParam("email") String email, @RequestParam("backup_email") String backupEmail, @RequestParam("password") String password) {
-        UserModel newUser = new UserModel();
+        Usr newUser = new Usr();
         newUser.setUserName(userName);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);

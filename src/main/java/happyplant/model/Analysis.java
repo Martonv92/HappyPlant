@@ -7,14 +7,14 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Analysis")
-public class AnalysisModel {
+public class Analysis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne
-    private UserModel user;
+    private Usr user;
 
     @Min(0)
     @Max(5000)
@@ -58,13 +58,13 @@ public class AnalysisModel {
     private Integer tonsPerHectar;
 
     @OneToOne
-    private PlantModel plantModelType;
+    private Plant plantType;
 
 
-    public AnalysisModel() {
+    public Analysis() {
     }
 
-    public AnalysisModel(UserModel user, @Min(0) @Max(5000) @NotNull Double nitrogen, @Min(0) @Max(5000) @NotNull Double phosphorus, @Min(0) @Max(5000) @NotNull Double kalium, @Min(0) @Max(5000) @NotNull Double magnesium, @Min(0) @Max(5000) @NotNull Double calcium, @Min(0) @Max(12) @NotNull Double PH, @Min(0) @Max(20) @NotNull Double EC, @NotNull Integer userAreaInHectar, @NotNull Integer tonsPerHectar, PlantModel plantModelType) {
+    public Analysis(Usr user, @Min(0) @Max(5000) @NotNull Double nitrogen, @Min(0) @Max(5000) @NotNull Double phosphorus, @Min(0) @Max(5000) @NotNull Double kalium, @Min(0) @Max(5000) @NotNull Double magnesium, @Min(0) @Max(5000) @NotNull Double calcium, @Min(0) @Max(12) @NotNull Double PH, @Min(0) @Max(20) @NotNull Double EC, @NotNull Integer userAreaInHectar, @NotNull Integer tonsPerHectar, Plant plantType) {
         this.user = user;
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
@@ -75,7 +75,7 @@ public class AnalysisModel {
         this.EC = EC;
         this.userAreaInHectar = userAreaInHectar;
         this.tonsPerHectar = tonsPerHectar;
-        this.plantModelType = plantModelType;
+        this.plantType = plantType;
     }
 
     public Integer getId() {
@@ -86,11 +86,11 @@ public class AnalysisModel {
         this.id = id;
     }
 
-    public UserModel getUser() {
+    public Usr getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(Usr user) {
         this.user = user;
     }
 
@@ -174,12 +174,12 @@ public class AnalysisModel {
         this.tonsPerHectar = tonsPerHectar;
     }
 
-    public PlantModel getPlantModelType() {
-        return plantModelType;
+    public Plant getPlantType() {
+        return plantType;
     }
 
-    public void setPlantModelType(PlantModel plantModelType) {
-        this.plantModelType = plantModelType;
+    public void setPlantType(Plant plantType) {
+        this.plantType = plantType;
     }
 
 }

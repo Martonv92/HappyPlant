@@ -3,13 +3,12 @@ package happyplant.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "PlanModel")
-public class PlanModel {
+@Table(name = "Plan")
+public class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +18,10 @@ public class PlanModel {
     private Date planDate;
 
     @ManyToOne
-    private UserModel user;
+    private Usr user;
 
     @OneToOne
-    private AnalysisModel analysis;
+    private Analysis analysis;
 
     @Min(0)
     @Max(5000)
@@ -49,15 +48,15 @@ public class PlanModel {
     @NotNull
     private Double calciumResult;
 
-    public PlanModel() {
+    public Plan() {
     }
 
-    public PlanModel(Date planDate, UserModel user, AnalysisModel analysis,
-                     @Min(0) @Max(5000) @NotNull Double nitrogenResult,
-                     @Min(0) @Max(5000) @NotNull Double phosphorusResult,
-                     @Min(0) @Max(5000) @NotNull Double kaliumResult,
-                     @Min(0) @Max(5000) @NotNull Double magnesiumResult,
-                     @Min(0) @Max(5000) @NotNull Double calciumResult) {
+    public Plan(Date planDate, Usr user, Analysis analysis,
+                @Min(0) @Max(5000) @NotNull Double nitrogenResult,
+                @Min(0) @Max(5000) @NotNull Double phosphorusResult,
+                @Min(0) @Max(5000) @NotNull Double kaliumResult,
+                @Min(0) @Max(5000) @NotNull Double magnesiumResult,
+                @Min(0) @Max(5000) @NotNull Double calciumResult) {
         this.planDate = planDate;
         this.user = user;
         this.analysis = analysis;
@@ -84,19 +83,19 @@ public class PlanModel {
         this.planDate = planDate;
     }
 
-    public UserModel getUser() {
+    public Usr getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(Usr user) {
         this.user = user;
     }
 
-    public AnalysisModel getAnalysis() {
+    public Analysis getAnalysis() {
         return analysis;
     }
 
-    public void setAnalysis(AnalysisModel analysis) {
+    public void setAnalysis(Analysis analysis) {
         this.analysis = analysis;
     }
 
