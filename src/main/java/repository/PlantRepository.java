@@ -1,6 +1,6 @@
 package repository;
 
-import model.plant.PlantModel;
+import model.PlantModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 

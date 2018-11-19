@@ -1,6 +1,7 @@
-package model.userInputData;
+package model;
 
-import model.enums.SoilType;
+import org.springframework.beans.factory.annotation.Autowired;
+import repository.PlantRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -10,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "AnalysisModel")
+@Table(name = "Analysis")
 public class AnalysisModel {
 
     @Id
@@ -75,15 +76,23 @@ public class AnalysisModel {
     @NotEmpty
     private Double EC;
 
-    @Enumerated
-    @NotNull
-    private SoilType soilType;
 
+    @NotEmpty
+    @NotNull
+    Integer userAreaInHectar;
+
+    @NotNull
+    @NotEmpty
+    Integer tonsPerHectar;
+
+    @NotNull
+    @NotEmpty
+    PlantModel plantModelType;
 
     public AnalysisModel() {
     }
 
-    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC) {
+    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC, Integer userAreaInHectaruserAreaInHectar, Integer tonsPerHectar, PlantModel plantModelType) {
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
         this.kalium = kalium;
@@ -91,6 +100,15 @@ public class AnalysisModel {
         this.calcium = calcium;
         this.PH = PH;
         this.EC = EC;
+        this.userAreaInHectar = userAreaInHectar;
+
+        if(tonsPerHectar > plantModelType.getMaxYieldInTonsPerHectar()){
+            this.tonsPerHectar = plantModelType.getMaxYieldInTonsPerHectar();
+        } else {
+            this.tonsPerHectar = tonsPerHectar;
+        }
+
+        this.plantModelType = plantModelType;
     }
 
     public Double getPH() {
@@ -147,6 +165,32 @@ public class AnalysisModel {
 
     public void setCalcium(Double calcium) {
         this.calcium = calcium;
+    }
+
+    public PlantModel getPlantModelType() {
+        return plantModelType;
+    }
+
+    public void setPlantModelType(PlantModel plantModelType) {
+        this.plantModelType = plantModelType;
+    }
+
+    public Integer getUserAreaInHectar() {
+        return userAreaInHectar;
+    }
+
+    public void setUserAreaInHectar(Integer userAreaInHectar) {
+        this.userAreaInHectar = userAreaInHectar;
+    }
+
+    public Integer getTonsPerHectar() {
+        return tonsPerHectar;
+    }
+
+    public void setTonsPerHectar(Integer tonsPerHectar) {
+        this.tonsPerHectar = tonsPerHectar;
+    }
+
 
     /*public Double getIron() {
         return iron;
@@ -210,5 +254,6 @@ public class AnalysisModel {
 
     public void setMolybdenum(Double molybdenum) {
         this.molybdenum = molybdenum;*/
-    }
+
+
 }

@@ -1,8 +1,5 @@
-package model.userModel;
+package model;
 
-import model.userInputData.AnalysisModel;
-import model.userInputData.PlanModel;
-import model.userInputData.TargetModel;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -13,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Usr")
 public class UserModel {
 
     @Id
@@ -49,9 +46,6 @@ public class UserModel {
     @NotEmpty
     private String hashedPassword;
 
-
-    @OneToMany(mappedBy = "userId")
-    private List<TargetModel> targetModels;
 
     @OneToMany(mappedBy = "userId")
     private List<PlanModel> planModels;

@@ -1,6 +1,6 @@
 package service;
 
-import model.userInputData.AnalysisModel;
+import model.AnalysisModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.AnalysisRepository;
