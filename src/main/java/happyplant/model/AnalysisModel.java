@@ -3,7 +3,6 @@ package happyplant.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -13,83 +12,61 @@ public class AnalysisModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int analysisId;
+    private Integer id;
 
-    @OneToOne
-    private int userId;
-
-    @NotEmpty
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @ManyToOne
+    private UserModel user;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double nitrogen;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double phosphorus;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double kalium;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double magnesium;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double calcium;
 
     @Min(0)
     @Max(12)
     @NotNull
-    @NotEmpty
     private Double PH;
 
     @Min(0)
     @Max(20)
     @NotNull
-    @NotEmpty
     private Double EC;
 
-
-    @NotEmpty
     @NotNull
     private Integer userAreaInHectar;
 
     @NotNull
-    @NotEmpty
     private Integer tonsPerHectar;
 
-    @NotNull
-    @NotEmpty
+    @OneToOne
     private PlantModel plantModelType;
 
-    /*private Double iron;
-    private Double zinc;
-    private Double boron;
-    private Double copper;
-    private Double natrium;
-    private Double chlorine;
-    private Double manganese;
-    private Double molybdenum;*/
 
     public AnalysisModel() {
     }
 
-    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC, Integer userAreaInHectar, Integer tonsPerHectar, PlantModel plantModelType) {
+    public AnalysisModel(UserModel user, @Min(0) @Max(5000) @NotNull Double nitrogen, @Min(0) @Max(5000) @NotNull Double phosphorus, @Min(0) @Max(5000) @NotNull Double kalium, @Min(0) @Max(5000) @NotNull Double magnesium, @Min(0) @Max(5000) @NotNull Double calcium, @Min(0) @Max(12) @NotNull Double PH, @Min(0) @Max(20) @NotNull Double EC, @NotNull Integer userAreaInHectar, @NotNull Integer tonsPerHectar, PlantModel plantModelType) {
+        this.user = user;
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
         this.kalium = kalium;
@@ -98,31 +75,33 @@ public class AnalysisModel {
         this.PH = PH;
         this.EC = EC;
         this.userAreaInHectar = userAreaInHectar;
-
-        if(tonsPerHectar > plantModelType.getMaxYieldInTonsPerHectar()){
-            this.tonsPerHectar = plantModelType.getMaxYieldInTonsPerHectar();
-        } else {
-            this.tonsPerHectar = tonsPerHectar;
-        }
-
+        this.tonsPerHectar = tonsPerHectar;
         this.plantModelType = plantModelType;
     }
 
-    public Double getPH() {
-        return PH;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPH(Double PH) {
-        this.PH = PH;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Double getEC() {
-        return EC;
+    public UserModel getUser() {
+        return user;
     }
 
-    public void setEC(Double EC) {
-        this.EC = EC;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
+
+    /*public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }*/
 
     public Double getNitrogen() {
         return nitrogen;
@@ -164,12 +143,20 @@ public class AnalysisModel {
         this.calcium = calcium;
     }
 
-    public PlantModel getPlantModelType() {
-        return plantModelType;
+    public Double getPH() {
+        return PH;
     }
 
-    public void setPlantModelType(PlantModel plantModelType) {
-        this.plantModelType = plantModelType;
+    public void setPH(Double PH) {
+        this.PH = PH;
+    }
+
+    public Double getEC() {
+        return EC;
+    }
+
+    public void setEC(Double EC) {
+        this.EC = EC;
     }
 
     public Integer getUserAreaInHectar() {
@@ -188,69 +175,12 @@ public class AnalysisModel {
         this.tonsPerHectar = tonsPerHectar;
     }
 
-
-    /*public Double getIron() {
-        return iron;
+    public PlantModel getPlantModelType() {
+        return plantModelType;
     }
 
-    public void setIron(Double iron) {
-        this.iron = iron;
+    public void setPlantModelType(PlantModel plantModelType) {
+        this.plantModelType = plantModelType;
     }
-
-    public Double getZinc() {
-        return zinc;
-    }
-
-    public void setZinc(Double zinc) {
-        this.zinc = zinc;
-    }
-
-    public Double getBoron() {
-        return boron;
-    }
-
-    public void setBoron(Double boron) {
-        this.boron = boron;
-    }
-
-    public Double getCopper() {
-        return copper;
-    }
-
-    public void setCopper(Double copper) {
-        this.copper = copper;
-    }
-
-    public Double getNatrium() {
-        return natrium;
-    }
-
-    public void setNatrium(Double natrium) {
-        this.natrium = natrium;
-    }
-
-    public Double getChlorine() {
-        return chlorine;
-    }
-
-    public void setChlorine(Double chlorine) {
-        this.chlorine = chlorine;
-    }
-
-    public Double getManganese() {
-        return manganese;
-    }
-
-    public void setManganese(Double manganese) {
-        this.manganese = manganese;
-    }
-
-    public Double getMolybdenum() {
-        return molybdenum;
-    }
-
-    public void setMolybdenum(Double molybdenum) {
-        this.molybdenum = molybdenum;*/
-
 
 }

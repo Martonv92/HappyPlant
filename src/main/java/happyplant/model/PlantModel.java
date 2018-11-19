@@ -3,106 +3,59 @@ package happyplant.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "PlantModel")
 public class PlantModel {
 
     @Id
     @GeneratedValue
-    private int plantId;
+    private Integer plantId;
 
     @NotNull
     @NotEmpty
-    private String plantType;
+    private String plantName;
 
     @NotNull
-    @NotEmpty
     private Double idealPH;
 
     @NotNull
-    @NotEmpty
     private Double idealEC;
 
 
     @NotNull
-    @NotEmpty
     private Integer daysUntilHarvest;
 
     @NotNull
-    @NotEmpty
     private Integer rootDepthInCentimeters;
 
     @NotNull
-    @NotEmpty
     private Integer maxYieldInTonsPerHectar;
 
-
     @NotNull
-    @NotEmpty
     private Double nitrogenNeeds;
 
     @NotNull
-    @NotEmpty
     private Double phosphorusNeeds;
 
     @NotNull
-    @NotEmpty
     private Double kaliumNeeds;
 
-
     @NotNull
-    @NotEmpty
     private Double magnesiumNeeds;
 
     @NotNull
-    @NotEmpty
     private Double calciumNeeds;
 
-    /*private Double ironNeeds;
-    private Double zincNeeds;
-    private Double boronNeeds;
-    private Double copperNeeds;
-    private Double natriumNeeds;
-    private Double chlorineNeeds;
-    private Double manganeseNeeds;
-    private Double molybdenumNeeds;
-    private Double sulfurNeeds;
-    private Double siliconNeeds;*/
 
     public PlantModel() {
     }
 
-    public PlantModel(String plantType,
-
-                      Double idealPH,
-                      Double idealEC,
-
-                      Integer daysUntilHarvest,
-                      Integer rootDepthInCentimeters,
-                      Integer maxYieldInTonsPerHectar,
-
-                      Double nitrogenNeeds,
-                      Double phosphorusNeeds,
-                      Double kaliumNeeds,
-
-                      Double magnesiumNeeds,
-                      Double calciumNeeds
-
-                 /*Double ironNeeds,
-                 Double zincNeeds,
-                 Double boronNeeds,
-                 Double copperNeeds,
-                 Double natriumNeeds,
-                 Double chlorineNeeds,
-                 Double manganeseNeeds,
-                 Double molybdenumNeeds,
-                 Double sulfurNeeds,
-                 Double siliconNeeds*/)
-    {
-
-        this.plantType = plantType;
+    public PlantModel(@NotNull @NotEmpty String plantName, @NotNull Double idealPH, @NotNull Double idealEC, @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar, @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds) {
+        this.plantName = plantName;
         this.idealPH = idealPH;
         this.idealEC = idealEC;
         this.daysUntilHarvest = daysUntilHarvest;
@@ -113,16 +66,6 @@ public class PlantModel {
         this.kaliumNeeds = kaliumNeeds;
         this.magnesiumNeeds = magnesiumNeeds;
         this.calciumNeeds = calciumNeeds;
-        /*this.ironNeeds = ironNeeds;
-        this.zincNeeds = zincNeeds;
-        this.boronNeeds = boronNeeds;
-        this.copperNeeds = copperNeeds;
-        this.natriumNeeds = natriumNeeds;
-        this.chlorineNeeds = chlorineNeeds;
-        this.manganeseNeeds = manganeseNeeds;
-        this.molybdenumNeeds = molybdenumNeeds;
-        this.sulfurNeeds = sufurNeeds;
-        this.siliconNeeds = siliconNeeds;*/
     }
 
     public Integer getPlantId() {
@@ -133,12 +76,12 @@ public class PlantModel {
         this.plantId = plantId;
     }
 
-    public String getPlantType() {
-        return plantType;
+    public String getPlantName() {
+        return plantName;
     }
 
-    public void setPlantType(String plantType) {
-        this.plantType = plantType;
+    public void setPlantName(String plantName) {
+        this.plantName = plantName;
     }
 
     public Double getIdealPH() {

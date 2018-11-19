@@ -5,7 +5,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -15,20 +14,14 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private Integer id;
 
-    @NotNull
     @NotEmpty
     private String firstName;
 
-    @NotNull
     @NotEmpty
     private String lastName;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
-
-    @NotNull
     @NotEmpty
     private String userName;
 
@@ -42,28 +35,25 @@ public class UserModel {
     @Email
     private String backupEmail;
 
-    @NotNull
     @NotEmpty
     private String hashedPassword;
 
-
-    @OneToMany(mappedBy = "userId", targetEntity = PlantModel.class)
+    @OneToMany(mappedBy = "user", targetEntity = PlanModel.class)
     private List<PlanModel> planModels;
 
-    @OneToMany(mappedBy = "userId", targetEntity = AnalysisModel.class)
+    @OneToMany(mappedBy = "user", targetEntity = AnalysisModel.class)
     private List<AnalysisModel> analysisModels;
 
     public UserModel() {
     }
 
-    public UserModel(String firstName, String lastName, String userName, String password, String email, String backupEmail, Date dateOfBirth) {
+    public UserModel(String firstName, String lastName, String userName, String password, String email, String backupEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.hashedPassword = password;
         this.email = email;
         this.backupEmail = backupEmail;
-        this.dateOfBirth = dateOfBirth;
     }
 
     public void setUserName(String userName) {
@@ -78,12 +68,12 @@ public class UserModel {
         this.hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -104,14 +94,6 @@ public class UserModel {
 
     public String getUserName() {
         return userName;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {

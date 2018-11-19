@@ -13,63 +13,54 @@ public class PlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int planId;
+    private Integer id;
 
     @Temporal(TemporalType.DATE)
     private Date planDate;
 
-    @OneToOne
-    private int userId;
+    @ManyToOne
+    private UserModel user;
 
     @OneToOne
-    private int analysisModelId;
-
-    @OneToOne
-    private int targetModelId;
+    private AnalysisModel analysis;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double nitrogenResult;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double phosphorusResult;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double kaliumResult;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double magnesiumResult;
 
     @Min(0)
     @Max(5000)
     @NotNull
-    @NotEmpty
     private Double calciumResult;
 
     public PlanModel() {
     }
 
-    public PlanModel(Date planDate, Integer userId, Integer analysisModelId, Integer targetModelId,
-                     @Min(0) @Max(5000) @NotNull @NotEmpty Double nitrogenResult,
-                     @Min(0) @Max(5000) @NotNull @NotEmpty Double phosphorusResult,
-                     @Min(0) @Max(5000) @NotNull @NotEmpty Double kaliumResult,
-                     @Min(0) @Max(5000) @NotNull @NotEmpty Double magnesiumResult,
-                     @Min(0) @Max(5000) @NotNull @NotEmpty Double calciumResult) {
+    public PlanModel(Date planDate, UserModel user, AnalysisModel analysis,
+                     @Min(0) @Max(5000) @NotNull Double nitrogenResult,
+                     @Min(0) @Max(5000) @NotNull Double phosphorusResult,
+                     @Min(0) @Max(5000) @NotNull Double kaliumResult,
+                     @Min(0) @Max(5000) @NotNull Double magnesiumResult,
+                     @Min(0) @Max(5000) @NotNull Double calciumResult) {
         this.planDate = planDate;
-        this.userId = userId;
-        this.analysisModelId = analysisModelId;
-        this.targetModelId = targetModelId;
+        this.user = user;
+        this.analysis = analysis;
         this.nitrogenResult = nitrogenResult;
         this.phosphorusResult = phosphorusResult;
         this.kaliumResult = kaliumResult;
@@ -77,12 +68,12 @@ public class PlanModel {
         this.calciumResult = calciumResult;
     }
 
-    public Integer getPlanId() {
-        return planId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPlanId(Integer planId) {
-        this.planId = planId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getPlanDate() {
@@ -93,28 +84,20 @@ public class PlanModel {
         this.planDate = planDate;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public UserModel getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
-    public Integer getAnalysisModelId() {
-        return analysisModelId;
+    public AnalysisModel getAnalysis() {
+        return analysis;
     }
 
-    public void setAnalysisModelId(Integer analysisModelId) {
-        this.analysisModelId = analysisModelId;
-    }
-
-    public Integer getTargetModelId() {
-        return targetModelId;
-    }
-
-    public void setTargetModelId(Integer targetModelId) {
-        this.targetModelId = targetModelId;
+    public void setAnalysis(AnalysisModel analysis) {
+        this.analysis = analysis;
     }
 
     public Double getNitrogenResult() {
@@ -157,3 +140,5 @@ public class PlanModel {
         this.calciumResult = calciumResult;
     }
 }
+
+

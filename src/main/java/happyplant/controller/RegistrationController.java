@@ -25,7 +25,7 @@ public class RegistrationController {
         newUser.setEmail(email);
         newUser.setBackupEmail(backupEmail);
         newUser.setHashedPassword(password);
-        newUser.setDateOfBirth(birtDate);
+        //newUser.setDateOfBirth(birtDate);
         registrationService.registerUser(newUser);
         return "redirect:/login";
     }

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import happyplant.repository.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
@@ -30,10 +31,10 @@ public class Initializer {
     @Bean
     public CommandLineRunner initialize() {
         return (String... args) -> {
+            UserModel józsiBá = new UserModel("József", "Kovács","KJ_63", "asdasdas231312", "kj_63_agro@gmail.com", "jozsika_63_KJ@gmail.com"/*, new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-15") */);
+            userRepository.save(józsiBá);
             plantRepository.save(new PlantModel("pickling cucumber", 5.5, 2.0, 180, 20, 180, 486.0, 252.0, 720.0, 252.0, 400.0));
-
-            analysisRepository.save(new AnalysisModel(450.0, 600.0, 200.0,180.0, 350.0, 4.6, 6.3, 30, 140, plantRepository.findByPlantName("pickled cucumber")));
-            userRepository.save(new UserModel("József", "Kovács","KJ_63", "asdasdas231312", "kj_63_agro@gmail.com", "jozsika_63_KJ@gmail.com", new Date(1963, 10, 11)));
+            analysisRepository.save(new AnalysisModel(józsiBá, 450.0, 600.0, 200.0,180.0, 350.0, 4.6, 6.3, 30, 140, plantRepository.findByPlantName("pickled cucumber")));
         };
 
     }
