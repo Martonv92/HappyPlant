@@ -1,13 +1,13 @@
-package config;
+package happyplant.config;
 
-import model.PlantModel;
-import model.AnalysisModel;
-import model.UserModel;
+import happyplant.model.PlantModel;
+import happyplant.model.AnalysisModel;
+import happyplant.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import repository.*;
+import happyplant.repository.*;
 
 import java.util.Date;
 

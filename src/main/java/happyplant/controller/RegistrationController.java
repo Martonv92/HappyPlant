@@ -1,12 +1,12 @@
-package controller;
+package happyplant.controller;
 
-import model.UserModel;
+import happyplant.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import service.RegistrationService;
+import happyplant.service.RegistrationService;
 
 import java.util.Date;
 

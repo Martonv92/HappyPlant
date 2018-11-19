@@ -1,4 +1,4 @@
-package model;
+package happyplant.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ public class PlantModel {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int plantId;
 
     @NotNull
     @NotEmpty
@@ -71,6 +71,8 @@ public class PlantModel {
     private Double sulfurNeeds;
     private Double siliconNeeds;*/
 
+    public PlantModel() {
+    }
 
     public PlantModel(String plantType,
 
@@ -123,12 +125,12 @@ public class PlantModel {
         this.siliconNeeds = siliconNeeds;*/
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getPlantId() {
+        return plantId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPlantId(Integer plantId) {
+        this.plantId = plantId;
     }
 
     public String getPlantType() {

@@ -1,9 +1,9 @@
-package service;
+package happyplant.service;
 
-import model.PlanModel;
+import happyplant.model.PlanModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.PlanRepository;
+import happyplant.repository.PlanRepository;
 
 @Service
 public class PlanService {

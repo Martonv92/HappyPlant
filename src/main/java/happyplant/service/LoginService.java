@@ -1,4 +1,4 @@
-package service;
+package happyplant.service;
 
 public class LoginService {
 }

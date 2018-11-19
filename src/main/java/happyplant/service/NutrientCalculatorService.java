@@ -1,10 +1,10 @@
-package service;
+package happyplant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.AnalysisRepository;
-import repository.PlanRepository;
-import repository.PlantRepository;
+import happyplant.repository.AnalysisRepository;
+import happyplant.repository.PlanRepository;
+import happyplant.repository.PlantRepository;
 
 @Service
 public class NutrientCalculatorService {

@@ -1,9 +1,9 @@
-package service;
+package happyplant.service;
 
-import model.UserModel;
+import happyplant.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import happyplant.repository.UserRepository;
 
 @Service
 public class RegistrationService {

@@ -1,4 +1,4 @@
-package model;
+package happyplant.model;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -14,8 +14,8 @@ import java.util.List;
 public class UserModel {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
 
     @NotNull
     @NotEmpty
@@ -47,10 +47,10 @@ public class UserModel {
     private String hashedPassword;
 
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", targetEntity = PlantModel.class)
     private List<PlanModel> planModels;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", targetEntity = AnalysisModel.class)
     private List<AnalysisModel> analysisModels;
 
     public UserModel() {
@@ -78,12 +78,12 @@ public class UserModel {
         this.hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

@@ -1,6 +1,6 @@
-package repository;
+package happyplant.repository;
 
-import model.AnalysisModel;
+import happyplant.model.AnalysisModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 

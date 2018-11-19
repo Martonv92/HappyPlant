@@ -1,7 +1,5 @@
-package model;
+package happyplant.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import repository.PlanRepository;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -13,24 +11,21 @@ import java.util.Date;
 @Table(name = "PlanModel")
 public class PlanModel {
 
-    @Autowired
-    PlanRepository planRepository;
-
     @Id
-    @GeneratedValue
-    private Integer planId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int planId;
 
     @Temporal(TemporalType.DATE)
     private Date planDate;
 
     @OneToOne
-    private Integer userId;
+    private int userId;
 
     @OneToOne
-    private Integer analysisModelId;
+    private int analysisModelId;
 
     @OneToOne
-    private Integer targetModelId;
+    private int targetModelId;
 
     @Min(0)
     @Max(5000)
@@ -80,14 +75,6 @@ public class PlanModel {
         this.kaliumResult = kaliumResult;
         this.magnesiumResult = magnesiumResult;
         this.calciumResult = calciumResult;
-    }
-
-    public PlanRepository getPlanRepository() {
-        return planRepository;
-    }
-
-    public void setPlanRepository(PlanRepository planRepository) {
-        this.planRepository = planRepository;
     }
 
     public Integer getPlanId() {

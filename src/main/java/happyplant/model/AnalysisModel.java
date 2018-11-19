@@ -1,7 +1,4 @@
-package model;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import repository.PlantRepository;
+package happyplant.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -15,11 +12,11 @@ import java.util.Date;
 public class AnalysisModel {
 
     @Id
-    @GeneratedValue
-    private Integer analysisId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int analysisId;
 
     @OneToOne
-    private Integer userId;
+    private int userId;
 
     @NotEmpty
     @Temporal(TemporalType.DATE)
@@ -55,15 +52,6 @@ public class AnalysisModel {
     @NotEmpty
     private Double calcium;
 
-    /*private Double iron;
-    private Double zinc;
-    private Double boron;
-    private Double copper;
-    private Double natrium;
-    private Double chlorine;
-    private Double manganese;
-    private Double molybdenum;*/
-
     @Min(0)
     @Max(12)
     @NotNull
@@ -79,20 +67,29 @@ public class AnalysisModel {
 
     @NotEmpty
     @NotNull
-    Integer userAreaInHectar;
+    private Integer userAreaInHectar;
 
     @NotNull
     @NotEmpty
-    Integer tonsPerHectar;
+    private Integer tonsPerHectar;
 
     @NotNull
     @NotEmpty
-    PlantModel plantModelType;
+    private PlantModel plantModelType;
+
+    /*private Double iron;
+    private Double zinc;
+    private Double boron;
+    private Double copper;
+    private Double natrium;
+    private Double chlorine;
+    private Double manganese;
+    private Double molybdenum;*/
 
     public AnalysisModel() {
     }
 
-    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC, Integer userAreaInHectaruserAreaInHectar, Integer tonsPerHectar, PlantModel plantModelType) {
+    public AnalysisModel(Double nitrogen, Double phosphorus, Double kalium, Double magnesium, Double calcium, Double PH, Double EC, Integer userAreaInHectar, Integer tonsPerHectar, PlantModel plantModelType) {
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
         this.kalium = kalium;
