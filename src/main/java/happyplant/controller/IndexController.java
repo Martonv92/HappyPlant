@@ -64,5 +64,4 @@ public class IndexController {
         session.invalidate();
         return "registrationlogin";
     }
-
 }

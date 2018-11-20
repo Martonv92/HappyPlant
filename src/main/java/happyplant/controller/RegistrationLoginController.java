@@ -30,7 +30,6 @@ public class RegistrationLoginController {
         return "redirect:/";
     }
 
-
     @PostMapping("/registration")
     public String registration(@RequestParam("user_name") String userName, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName, @RequestParam("email") String email, @RequestParam("backup_email") String backupEmail, @RequestParam("password") String password) {
         UserModel newUser = new UserModel();

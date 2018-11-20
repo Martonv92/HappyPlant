@@ -78,6 +78,11 @@ public class AnalysisModel {
         this.plantModelType = plantModelType;
     }
 
+    public PlanModel calculate(){
+        PlanModel result = new PlanModel();
+        return result;
+    }
+
     public Integer getId() {
         return id;
     }

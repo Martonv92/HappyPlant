@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.awt.*;
 
 @Entity
 @Table(name = "PlantModel")
@@ -25,7 +24,6 @@ public class PlantModel {
 
     @NotNull
     private Double idealEC;
-
 
     @NotNull
     private Integer daysUntilHarvest;
@@ -76,6 +74,7 @@ public class PlantModel {
         this.calciumNeeds = calciumNeeds;
         this.imageURL = imageURL;
     }
+
 
     public Integer getPlantId() {
         return plantId;

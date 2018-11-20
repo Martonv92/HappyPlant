@@ -18,9 +18,4 @@ public class CalculatorService {
     @Autowired
     AnalysisRepository analysisRepository;
 
-
-    /*public static PlanModel calculate(){
-
-        return plan;
-    }*/
 }
