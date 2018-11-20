@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.awt.*;
 
 @Entity
 @Table(name = "PlantModel")
@@ -50,11 +51,18 @@ public class PlantModel {
     @NotNull
     private Double calciumNeeds;
 
+    @NotEmpty
+    private String imageURL;
+
 
     public PlantModel() {
     }
 
-    public PlantModel(@NotNull @NotEmpty String plantName, @NotNull Double idealPH, @NotNull Double idealEC, @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar, @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds) {
+    public PlantModel(@NotNull @NotEmpty String plantName,
+                      @NotNull Double idealPH, @NotNull Double idealEC,
+                      @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar,
+                      @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds,
+                      @NotEmpty String imageURL) {
         this.plantName = plantName;
         this.idealPH = idealPH;
         this.idealEC = idealEC;
@@ -66,6 +74,7 @@ public class PlantModel {
         this.kaliumNeeds = kaliumNeeds;
         this.magnesiumNeeds = magnesiumNeeds;
         this.calciumNeeds = calciumNeeds;
+        this.imageURL = imageURL;
     }
 
     public Integer getPlantId() {
@@ -162,5 +171,13 @@ public class PlantModel {
 
     public void setCalciumNeeds(Double calciumNeeds) {
         this.calciumNeeds = calciumNeeds;
+    }
+
+    public String getImage() {
+        return imageURL;
+    }
+
+    public void setImage(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

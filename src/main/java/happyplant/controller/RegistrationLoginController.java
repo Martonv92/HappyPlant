@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import happyplant.service.RegistrationService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class RegistrationLoginController {
+
+    @Autowired
+    HttpSession session;
 
     @Autowired
     RegistrationService registrationService;
@@ -37,13 +42,12 @@ public class RegistrationLoginController {
         newUser.setHashedPassword(password);
         newUser.setAccessLevel(AccessLevel.USER);
         registrationService.registerUser(newUser);
-        return "redirect:/login";
+        return "redirect:/registrationlogin";
     }
-
 
     @GetMapping("/registration")
     public String regGet(){
-        return "registrationLoginController";
+        return "registrationlogin";
     }
 
 }

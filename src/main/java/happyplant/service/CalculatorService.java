@@ -7,7 +7,7 @@ import happyplant.repository.PlanRepository;
 import happyplant.repository.PlantRepository;
 
 @Service
-public class NutrientCalculatorService {
+public class CalculatorService {
 
     @Autowired
     PlantRepository plantRepository;
