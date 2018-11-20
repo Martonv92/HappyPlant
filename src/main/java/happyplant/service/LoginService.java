@@ -1,6 +1,6 @@
 package happyplant.service;
 
-import happyplant.model.Usr;
+import happyplant.model.UserModel;
 import happyplant.repository.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class LoginService {
     public String login(String email, String password) {
         Boolean isMatchingPassword = null;
 
-        Usr user = userRepository.findByEmail(email);
+        UserModel user = userRepository.findByEmail(email);
         String hashed = user.getHashedPassword();
 
         if (user == null) {

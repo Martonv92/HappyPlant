@@ -8,8 +8,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Plant")
-public class Plant {
+@Table(name = "PlantModel")
+public class PlantModel {
 
     @Id
     @GeneratedValue
@@ -51,10 +51,10 @@ public class Plant {
     private Double calciumNeeds;
 
 
-    public Plant() {
+    public PlantModel() {
     }
 
-    public Plant(@NotNull @NotEmpty String plantName, @NotNull Double idealPH, @NotNull Double idealEC, @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar, @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds) {
+    public PlantModel(@NotNull @NotEmpty String plantName, @NotNull Double idealPH, @NotNull Double idealEC, @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar, @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds) {
         this.plantName = plantName;
         this.idealPH = idealPH;
         this.idealEC = idealEC;

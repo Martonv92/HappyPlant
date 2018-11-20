@@ -1,4 +1,4 @@
 package happyplant.controller;
 
-public class AnalysisViewer {
+public class ResultController {
 }

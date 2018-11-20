@@ -1,6 +1,6 @@
 package happyplant.service;
 
-import happyplant.model.Usr;
+import happyplant.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import happyplant.repository.UserRepository;
@@ -11,7 +11,8 @@ public class RegistrationService {
     @Autowired
     UserRepository userRepository;
 
-    public void registerUser(Usr newUser) {
+    public void registerUser(UserModel newUser) {
         userRepository.save(newUser);
     }
+    public void deleteUser(UserModel userToDelete) { userRepository.delete(userToDelete);}
 }

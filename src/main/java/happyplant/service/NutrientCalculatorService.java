@@ -19,7 +19,7 @@ public class NutrientCalculatorService {
     AnalysisRepository analysisRepository;
 
 
-    /*public static Plan calculate(){
+    /*public static PlanModel calculate(){
 
         return plan;
     }*/

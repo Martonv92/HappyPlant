@@ -7,8 +7,8 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
-@Table(name = "Usr")
-public class Usr {
+@Table(name = "UserModel")
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,16 +36,20 @@ public class Usr {
     @NotEmpty
     private String hashedPassword;
 
-    @OneToMany(mappedBy = "user", targetEntity = Plan.class)
-    private List<Plan> plans;
+    @OneToMany(mappedBy = "user", targetEntity = PlanModel.class)
+    private List<PlanModel> planModels;
 
-    @OneToMany(mappedBy = "user", targetEntity = Analysis.class)
-    private List<Analysis> analyses;
+    @OneToMany(mappedBy = "user", targetEntity = AnalysisModel.class)
+    private List<AnalysisModel> analyses;
 
-    public Usr() {
+    @Enumerated
+    @NotEmpty
+    private AccessLevel accessLevel;
+
+    public UserModel() {
     }
 
-    public Usr(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String userName, @NotEmpty @Email String email, @NotEmpty @Email String backupEmail, @NotEmpty String hashedPassword) {
+    public UserModel(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String userName, @NotEmpty @Email String email, @NotEmpty @Email String backupEmail, @NotEmpty String hashedPassword, @NotEmpty AccessLevel accessLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -108,6 +112,14 @@ public class Usr {
 
     public void setBackupEmail(String backupEmail) {
         this.backupEmail = backupEmail;
+    }
+
+    public AccessLevel getAccessLevel() {
+        return accessLevel;
+    }
+
+    public void setAccessLevel(AccessLevel accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
 

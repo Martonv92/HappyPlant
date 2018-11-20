@@ -1,4 +1,4 @@
 package happyplant.controller;
 
-public class Index {
+public class AnalysisController {
 }

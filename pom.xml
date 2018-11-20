@@ -72,6 +72,13 @@
             <version>0.3m</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>mvc-auth-commons</artifactId>
+            <version>1.+</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
