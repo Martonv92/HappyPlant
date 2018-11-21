@@ -22,19 +22,19 @@ public class IndexController {
     HttpSession session;
 
     @Autowired
-    UserRepository userRepository;
+    PlanRepository planRepository;
 
     @Autowired
-    PlanRepository planRepository;
+    UserRepository userRepository;
 
     @Autowired
     RegistrationService registrationService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String loginGet(){
 
         if (session.getAttribute("user") == null){
-            return "registrationlogin";
+            return "redirect:/registrationlogin";
         }
         return "index";
     }
@@ -42,26 +42,25 @@ public class IndexController {
     @GetMapping("/plans")
     public String getPreviousPlans(){
         List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
-        session.setAttribute("plans", plans);
         return "plans";
     }
 
     @PostMapping("/analysis")
     public String choosePlant(@RequestParam PlantModel plant){
         session.setAttribute("plant", plant);
-        return "analysisform";
+        return "redirect:/analysisform";
     }
 
     @GetMapping("/logout")
     public String logout(){
         session.invalidate();
-        return "registrationlogin";
+        return "registration";
     }
 
     @PostMapping("/deleteAccount")
     public String deleteAccount(@RequestParam("email") String email, @RequestParam("password") String password){
         registrationService.deleteUser(userRepository.findByEmail(email));
         session.invalidate();
-        return "registrationlogin";
+        return "redirect:/registration";
     }
 }

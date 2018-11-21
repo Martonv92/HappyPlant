@@ -24,10 +24,18 @@ public class RegistrationLoginController {
     @Autowired
     LoginService loginService;
 
+    @GetMapping("/")
+    public String basicGet() { return "/registrationlogin"; }
+
+    @GetMapping("/registration")
+    public String regGet(){
+        return "/registrationlogin";
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
         loginService.login(email, password);
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @PostMapping("/registration")
@@ -41,12 +49,6 @@ public class RegistrationLoginController {
         newUser.setHashedPassword(password);
         newUser.setAccessLevel(AccessLevel.USER);
         registrationService.registerUser(newUser);
-        return "redirect:/registrationlogin";
+        return "redirect:/registration";
     }
-
-    @GetMapping("/registration")
-    public String regGet(){
-        return "registrationlogin";
-    }
-
 }

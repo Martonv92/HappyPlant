@@ -20,37 +20,38 @@ import javax.servlet.http.HttpSession;
 public class AnalysisController {
 
     @Autowired
-    AnalysisService analysisService;
+    HttpSession session;
 
     @Autowired
     AnalysisRepository analysisRepository;
 
     @Autowired
-    PlanService planService;
-
-    @Autowired
     PlanRepository planRepository;
 
     @Autowired
-    HttpSession session;
+    AnalysisService analysisService;
+
+    @Autowired
+    PlanService planService;
+
 
     @GetMapping("/analysisGet")
     public String analysisGet() {
 
         if (session.getAttribute("user") == null) {
-            return "registrationlogin";
+            return "redirect:/registrationlogin";
         }
         return "analysisform";
     }
 
     @GetMapping("/backToIndex")
     public String backToIndex(){
-        return "index";
+        return "redirect:/index";
     }
 
     @PostMapping("/calculate")
     public String calculate(
-            @RequestParam("user") UserModel user, @RequestParam("plant") PlantModel plant,
+            @RequestParam("user") UserModel user,
             @RequestParam("nitrogen") Double nitrogen,  @RequestParam("phosphorus") Double phosphorus, @RequestParam("kalium") Double kalium,
             @RequestParam("magnesium") Double magnesium, @RequestParam("calcium") Double calcium,
             @RequestParam("ph") Double ph, @RequestParam("ec") Double ec,
@@ -61,6 +62,6 @@ public class AnalysisController {
         planService.addNewPlan(plan);
         session.setAttribute("plan", plan);
         session.setAttribute("analysis", newAnalysis);
-        return "plan";
+        return "redirect:/plan";
     }
 }
