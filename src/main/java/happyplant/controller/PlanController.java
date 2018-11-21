@@ -2,6 +2,9 @@ package happyplant.controller;
 
 import happyplant.model.AnalysisModel;
 import happyplant.model.PlanModel;
+import happyplant.model.UserModel;
+import happyplant.repository.PlanRepository;
+
 import happyplant.service.AnalysisService;
 import happyplant.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class PlanController {
@@ -17,17 +21,22 @@ public class PlanController {
 
     final AnalysisService analysisService;
 
+    final PlanRepository planRepository;
+
     final PlanService planService;
 
+
+
     @Autowired
-    public PlanController(HttpSession session, AnalysisService analysisService, PlanService planService) {
+    public PlanController(HttpSession session, AnalysisService analysisService, PlanRepository planRepository, PlanService planService) {
         this.session = session;
         this.analysisService = analysisService;
         this.planService = planService;
+        this.planRepository = planRepository;
     }
 
 
-    @GetMapping("/planGet")
+    @GetMapping("/plan")
     public String planGet() {
 
         if (session.getAttribute("user") == null) {
@@ -42,21 +51,31 @@ public class PlanController {
         return "registration_login";
     }
 
-    @GetMapping("/backToAnalysis")
-    public String backToAnalysis(){
+    @GetMapping("/backToAnalysisFromPlan")
+    public String backToAnalysisFromPlan(){
         return "redirect:/analysis_form";
     }
 
     @GetMapping("/backToIndexFromPlan")
-    public String backToIndexFromPlan(){
+    public String backToIndexFromPlan() {
         session.removeAttribute("plant");
         return "redirect:/index";
     }
 
+    @GetMapping("/getFinishedPlansFromPlan")
+    public String getFinishedPlansFromPlan(){
+        session.getAttribute("plans");
+        return "finished_plans";
+    }
+
     @PostMapping("/savePlan")
     public String savePlan(){
-        planService.addNewPlan((PlanModel) session.getAttribute("plan"));
         analysisService.addNewAnalysis((AnalysisModel) session.getAttribute("newAnalysis"));
+        PlanModel newPlan = (PlanModel) session.getAttribute("plan");
+        planService.addNewPlan(newPlan);
+        List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
+        session.setAttribute("plans", plans);
+        session.removeAttribute("plan");
         return "plan";
     }
 }

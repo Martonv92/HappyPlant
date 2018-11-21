@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Your HappyPlant plans</title>
 </head>
 <body>
-<h1>HELLO PLANS</h1>
+
+<form action="/logoutFromFinishedPlans" method="get">
+    <button type="submit" name="logout_button" id="logout_button">Logout</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.plantType}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.planDate}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.nitrogenResult}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.phosphorusResult}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.kaliumResult}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.magnesiumResult}"></span></th>
+        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.calciumResult}"></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${session.plans.size() == 0}">
+        <td colspan="2"> No plans available </td>
+    </tr>
+    <tr th:each="plan : ${session.plans}">
+        <td><span th:text="${plan.plantType}"> </span></td>
+        <td><span th:text="${plan.planDate}">  </span></td>
+        <td><span th:text="${plan.nitrogenResult}">  </span></td>
+        <td><span th:text="${plan.phosphorusResult}">  </span></td>
+        <td><span th:text="${plan.kaliumResult}">  </span></td>
+        <td><span th:text="${plan.magnesiumResult}">  </span></td>
+        <td><span th:text="${plan.calciumResult}">  </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/backToIndexFromFinishedPlans" method="get">
+    <button type="submit" name="back_button" id="back_button">Back to index</button>
+</form>
+
 </body>
 </html>

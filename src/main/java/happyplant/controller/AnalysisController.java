@@ -62,7 +62,6 @@ public class AnalysisController {
 
     @PostMapping("/calculate")
     public String calculate(
-            @RequestParam("user") UserModel user,
             @RequestParam("nitrogen") Double nitrogen,
             @RequestParam("phosphorus") Double phosphorus,
             @RequestParam("kalium") Double kalium,
@@ -73,11 +72,10 @@ public class AnalysisController {
             @RequestParam("area_hectar") Integer area_hectar,
             @RequestParam("tonsPerHectar") Integer tonsPerHectar) {
 
-        AnalysisModel newAnalysis = new AnalysisModel(user, nitrogen, phosphorus, kalium, magnesium, calcium, ph, ec, area_hectar, tonsPerHectar, (PlantModel) session.getAttribute("plant"));
+        AnalysisModel newAnalysis = new AnalysisModel((UserModel) session.getAttribute("user"), nitrogen, phosphorus, kalium, magnesium, calcium, ph, ec, area_hectar, tonsPerHectar, (PlantModel) session.getAttribute("plant"));
         PlanModel plan = newAnalysis.calculate();
-        planService.addNewPlan(plan);
         session.setAttribute("plan", plan);
         session.setAttribute("analysis", newAnalysis);
-        return "redirect:/plan";
+        return "plan";
     }
 }

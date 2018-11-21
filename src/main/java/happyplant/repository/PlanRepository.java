@@ -9,5 +9,6 @@ import java.util.List;
 
 @Component
 public interface PlanRepository extends JpaRepository<PlanModel, Integer> {
-    public List<PlanModel> findAllByUser(UserModel user);
+    List<PlanModel> findAllByUser(UserModel user);
+    PlanModel findPlanModelById(Integer id);
 }

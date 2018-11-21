@@ -3,6 +3,7 @@ package happyplant.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -48,6 +49,11 @@ public class PlanModel {
     @NotNull
     private Double calciumResult;
 
+    @OneToOne
+    @NotEmpty
+    PlantModel plantType;
+
+
     public PlanModel() {
     }
 
@@ -56,7 +62,8 @@ public class PlanModel {
                      @Min(0) @Max(5000) @NotNull Double phosphorusResult,
                      @Min(0) @Max(5000) @NotNull Double kaliumResult,
                      @Min(0) @Max(5000) @NotNull Double magnesiumResult,
-                     @Min(0) @Max(5000) @NotNull Double calciumResult) {
+                     @Min(0) @Max(5000) @NotNull Double calciumResult,
+                     PlantModel plantType) {
         this.planDate = planDate;
         this.user = user;
         this.analysisModel = analysisModel;
@@ -65,6 +72,7 @@ public class PlanModel {
         this.kaliumResult = kaliumResult;
         this.magnesiumResult = magnesiumResult;
         this.calciumResult = calciumResult;
+        this.plantType = plantType;
     }
 
     public Integer getId() {
@@ -138,6 +146,15 @@ public class PlanModel {
     public void setCalciumResult(Double calciumResult) {
         this.calciumResult = calciumResult;
     }
+
+    public PlantModel getPlantType() {
+        return plantType;
+    }
+
+    public void setPlantType(PlantModel plantType) {
+        this.plantType = plantType;
+    }
+
 }
 
 

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "AnalysisModel")
@@ -58,13 +59,13 @@ public class AnalysisModel {
     private Integer tonsPerHectar;
 
     @OneToOne
-    private PlantModel plantModelType;
+    private PlantModel plantType;
 
 
     public AnalysisModel() {
     }
 
-    public AnalysisModel(UserModel user, @Min(0) @Max(5000) @NotNull Double nitrogen, @Min(0) @Max(5000) @NotNull Double phosphorus, @Min(0) @Max(5000) @NotNull Double kalium, @Min(0) @Max(5000) @NotNull Double magnesium, @Min(0) @Max(5000) @NotNull Double calcium, @Min(0) @Max(12) @NotNull Double PH, @Min(0) @Max(20) @NotNull Double EC, @NotNull Integer userAreaInHectar, @NotNull Integer tonsPerHectar, PlantModel plantModelType) {
+    public AnalysisModel(UserModel user, @Min(0) @Max(5000) @NotNull Double nitrogen, @Min(0) @Max(5000) @NotNull Double phosphorus, @Min(0) @Max(5000) @NotNull Double kalium, @Min(0) @Max(5000) @NotNull Double magnesium, @Min(0) @Max(5000) @NotNull Double calcium, @Min(0) @Max(12) @NotNull Double PH, @Min(0) @Max(20) @NotNull Double EC, @NotNull Integer userAreaInHectar, @NotNull Integer tonsPerHectar, PlantModel plantType) {
         this.user = user;
         this.nitrogen = nitrogen;
         this.phosphorus = phosphorus;
@@ -75,11 +76,12 @@ public class AnalysisModel {
         this.EC = EC;
         this.userAreaInHectar = userAreaInHectar;
         this.tonsPerHectar = tonsPerHectar;
-        this.plantModelType = plantModelType;
+        this.plantType = plantType;
     }
 
     public PlanModel calculate(){
-        PlanModel result = new PlanModel();
+        Date date = new Date();
+        PlanModel result = new PlanModel(date, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);
         return result;
     }
 
@@ -179,12 +181,12 @@ public class AnalysisModel {
         this.tonsPerHectar = tonsPerHectar;
     }
 
-    public PlantModel getPlantModelType() {
-        return plantModelType;
+    public PlantModel getPlantType() {
+        return plantType;
     }
 
-    public void setPlantModelType(PlantModel plantModelType) {
-        this.plantModelType = plantModelType;
+    public void setPlantType(PlantModel plantType) {
+        this.plantType = plantType;
     }
 
 }

@@ -53,9 +53,8 @@ public class IndexController {
         return "registration_login";
     }
 
-    @GetMapping("/finishedPlans")
-    public String getPreviousPlans(){
-        List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
+    @GetMapping("/getFinishedPlansFromIndex")
+    public String getFinishedPlans(){
         return "finished_plans";
     }
 
