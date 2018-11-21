@@ -13,21 +13,21 @@
 <table>
     <thead>
     <tr>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.plantType}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.planDate}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.nitrogenResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.phosphorusResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.kaliumResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.magnesiumResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.calciumResult}"></span></th>
+        <th> Plant </th>
+        <th> Date </th>
+        <th> Nitrogen result</th>
+        <th> Phosphorus result</th>
+        <th> Kalium result</th>
+        <th> Magnesium result</th>
+        <th> Calcium result</th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:if="${session.plans.size() == 0}">
-        <td colspan="2"> No plans available </td>
+    <tbody th:switch="${session.plans.isEmpty()}">
+    <tr th:case="true">
+        <td>No plans yet.</td>
     </tr>
-    <tr th:each="plan : ${session.plans}">
-        <td><span th:text="${plan.plantType}"> </span></td>
+    <tr th:case="false" th:each="plan : ${session.plans}">
+        <td><span th:text="${plan.plantType.getPlantName()}"> </span></td>
         <td><span th:text="${plan.planDate}">  </span></td>
         <td><span th:text="${plan.nitrogenResult}">  </span></td>
         <td><span th:text="${plan.phosphorusResult}">  </span></td>

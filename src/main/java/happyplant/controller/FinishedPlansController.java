@@ -47,6 +47,7 @@ public class FinishedPlansController {
         PlanModel planToDisplay = planRepository.findPlanModelById(id);
         session.setAttribute("plan", planToDisplay);
         session.removeAttribute("plans");
+        session.setAttribute("viewMode", true);
         return "redirect:/plan";
     }
 }

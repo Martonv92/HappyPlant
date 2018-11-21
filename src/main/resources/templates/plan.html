@@ -14,21 +14,18 @@
 <table>
     <thead>
     <tr>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.plantType}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.planDate}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.nitrogenResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.phosphorusResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.kaliumResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.magnesiumResult}"></span></th>
-        <th th:attr = "plan = ${happyplant.model.PlanModel}"> <span th:text="${happyplant.model.PlanModel.calciumResult}"></span></th>
+        <th> Plant </th>
+        <th> Date </th>
+        <th> Nitrogen result</th>
+        <th> Phosphorus result</th>
+        <th> Kalium result</th>
+        <th> Magnesium result</th>
+        <th> Calcium result</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${session.plans.size() == 0}">
-        <td><h2>No plans available</h2></td>
-    </tr>
     <tr>
-        <td><span th:text="${session.plan.plantType}"> </span></td>
+        <td><span th:text="${session.plan.plantType.getPlantName()}"> </span></td>
         <td><span th:text="${session.plan.planDate}">  </span></td>
         <td><span th:text="${session.plan.nitrogenResult}">  </span></td>
         <td><span th:text="${session.plan.phosphorusResult}">  </span></td>
@@ -38,6 +35,12 @@
     </tr>
     </tbody>
 </table>
+
+<span th:if = "${session.viewMode == false}">
+    <form action="/savePlan" method="get">
+        <button type="submit" name="save_button" id="save_button">Back to index</button>
+    </form>
+</span>
 
 <form action="/getFinishedPlansFromPlan" method="get">
     <button type="submit" name="plans_button" id="plans_button">My Plans</button>

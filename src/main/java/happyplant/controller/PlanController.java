@@ -53,18 +53,21 @@ public class PlanController {
 
     @GetMapping("/backToAnalysisFromPlan")
     public String backToAnalysisFromPlan(){
+        session.setAttribute("viewMode", false);
         return "redirect:/analysis_form";
     }
 
     @GetMapping("/backToIndexFromPlan")
     public String backToIndexFromPlan() {
         session.removeAttribute("plant");
+        session.setAttribute("viewMode", false);
         return "redirect:/index";
     }
 
     @GetMapping("/getFinishedPlansFromPlan")
     public String getFinishedPlansFromPlan(){
         session.getAttribute("plans");
+        session.setAttribute("viewMode", false);
         return "finished_plans";
     }
 
