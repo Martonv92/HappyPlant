@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HappyPlant Calculator</title>
+</head>
+<body>
+
+<form action="/logoutFromAnalysis" method="get">
+    <button type="submit" name="logout_button" id="logout_button">Logout</button>
+</form>
+
+<form action="/backToIndexFromAnalysis" method="get">
+    <button type="submit" name="back_button" id="back_button">Back to index</button>
+</form>
+
+<form action="/calculate" method="post">
+    <input type="number" th:default="0" max="5000">Nitrogen<br>
+    <input type="number" th:default="0" max="5000">Phosphorus<br>
+    <input type="number" th:default="0" max="5000">Kalium<br>
+    <input type="number" th:default="0" max="5000">Magnesium<br>
+    <input type="number" th:default="0" max="5000">Calcium<br>
+    <input type="number" th:default="0" max="12">pH<br>
+    <input type="number" th:default="0" max="20">EC<br>
+    <input type="number" th:default="0" max="100000">Area (in hectars)<br>
+    <input type="number" th:default="0" th:attr = "max = ${session.plantMaxYield}"> <p th:text="'Yield per hectar (in tons) - max for your plant is ' + ${session.plantMaxYield} + ' tons'"></p><br>
+</form>
+
+</body>
+</html>

@@ -27,22 +27,29 @@ public class PlanController {
     }
 
 
-    @GetMapping("/resultGet")
-    public String resultGet() {
+    @GetMapping("/planGet")
+    public String planGet() {
 
         if (session.getAttribute("user") == null) {
-            return "redirect:/registrationlogin";
+            return "redirect:/registration_login";
         }
         return "plan";
     }
 
+    @GetMapping("/logoutFromPlan")
+    public String logoutFromPlan() {
+        session.invalidate();
+        return "registration_login";
+    }
+
     @GetMapping("/backToAnalysis")
     public String backToAnalysis(){
-        return "redirect:/analysisform";
+        return "redirect:/analysis_form";
     }
 
     @GetMapping("/backToIndexFromPlan")
     public String backToIndexFromPlan(){
+        session.removeAttribute("plant");
         return "redirect:/index";
     }
 
@@ -52,5 +59,4 @@ public class PlanController {
         analysisService.addNewAnalysis((AnalysisModel) session.getAttribute("newAnalysis"));
         return "plan";
     }
-
 }

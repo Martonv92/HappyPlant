@@ -42,28 +42,29 @@ public class IndexController {
     public String indexGet(){
 
         if (session.getAttribute("user") == null){
-            return "redirect:/registrationlogin";
+            return "redirect:/registration";
         }
         return "index";
     }
 
-    @GetMapping("/plans")
+    @GetMapping("/logoutFromIndex")
+    public String logoutFromIndex(){
+        session.invalidate();
+        return "registration_login";
+    }
+
+    @GetMapping("/finishedPlans")
     public String getPreviousPlans(){
         List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
-        return "plans";
+        return "finished_plans";
     }
 
     @PostMapping("/analysis")
-    public String choosePlant(@RequestParam String plantName){
+    public String choosePlant(@RequestParam String plantName) {
         PlantModel plant = plantRepository.findByPlantName(plantName);
         session.setAttribute("plant", plant);
-        return "redirect:/analysisform";
-    }
-
-    @GetMapping("/logout")
-    public String logout(){
-        session.invalidate();
-        return "registrationlogin";
+        session.setAttribute("plantMaxYield", plant.getMaxYieldInTonsPerHectar());
+        return "redirect:/analysis_form";
     }
 
     @PostMapping("/deleteAccount")
@@ -72,6 +73,6 @@ public class IndexController {
         String email = user.getEmail();
         registrationService.deleteUser(userRepository.findByEmail(email));
         session.invalidate();
-        return "redirect:/registrationlogin";
+        return "redirect:/";
     }
 }

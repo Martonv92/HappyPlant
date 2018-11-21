@@ -39,27 +39,39 @@ public class AnalysisController {
     }
 
 
-    @GetMapping("/analysisform")
+    @GetMapping("/analysis_form")
     public String analysisGet() {
 
         if (session.getAttribute("user") == null) {
-            return "redirect:/registrationlogin";
+            return "redirect:/registration_login";
         }
-        return "analysisform";
+        return "analysis_form";
+    }
+
+    @GetMapping("/logoutFromAnalysis")
+    public String logoutFromAnalysis() {
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/backToIndexFromAnalysis")
     public String backToIndexFromAnalysis(){
+        session.removeAttribute("plant");
         return "redirect:/index";
     }
 
     @PostMapping("/calculate")
     public String calculate(
             @RequestParam("user") UserModel user,
-            @RequestParam("nitrogen") Double nitrogen,  @RequestParam("phosphorus") Double phosphorus, @RequestParam("kalium") Double kalium,
-            @RequestParam("magnesium") Double magnesium, @RequestParam("calcium") Double calcium,
-            @RequestParam("ph") Double ph, @RequestParam("ec") Double ec,
-            @RequestParam("area_hectar") Integer area_hectar, @RequestParam("tonsPerHectar") Integer tonsPerHectar) {
+            @RequestParam("nitrogen") Double nitrogen,
+            @RequestParam("phosphorus") Double phosphorus,
+            @RequestParam("kalium") Double kalium,
+            @RequestParam("magnesium") Double magnesium,
+            @RequestParam("calcium") Double calcium,
+            @RequestParam("ph") Double ph,
+            @RequestParam("ec") Double ec,
+            @RequestParam("area_hectar") Integer area_hectar,
+            @RequestParam("tonsPerHectar") Integer tonsPerHectar) {
 
         AnalysisModel newAnalysis = new AnalysisModel(user, nitrogen, phosphorus, kalium, magnesium, calcium, ph, ec, area_hectar, tonsPerHectar, (PlantModel) session.getAttribute("plant"));
         PlanModel plan = newAnalysis.calculate();

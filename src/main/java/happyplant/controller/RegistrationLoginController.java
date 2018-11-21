@@ -29,25 +29,35 @@ public class RegistrationLoginController {
     }
 
     @GetMapping("/")
-    public String basicGet() { return "/registrationlogin"; }
+    public String basicGet() {
+        return "/registration_login";
+    }
 
     @GetMapping("/registration")
     public String regGet(){
-        return "/registrationlogin";
+        return "/registration_login";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public String login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password) {
+
         if(loginService.login(email, password)) {
             return "redirect:/index";
         } else {
-            return "/registrationlogin";
+            return "/registration_login";
         }
-
     }
 
     @PostMapping("/registration")
-    public String registration(@RequestParam("user_name") String userName, @RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName, @RequestParam("email") String email, @RequestParam("backup_email") String backupEmail, @RequestParam("password") String password) {
+    public String registration(
+            @RequestParam("user_name") String userName,
+            @RequestParam("first_name") String firstName,
+            @RequestParam("last_name") String lastName,
+            @RequestParam("email") String email,
+            @RequestParam("backup_email") String backupEmail,
+            @RequestParam("password") String password) {
         UserModel newUser = new UserModel();
         newUser.setUserName(userName);
         newUser.setFirstName(firstName);

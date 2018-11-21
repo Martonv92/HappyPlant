@@ -8,12 +8,12 @@
 
 <a href="/plans">My plans</a>
 
-<form action="/logout" method="get">
+<form action="/logoutFromIndex" method="get">
     <button type="submit" name="logout_button" id="logout_button">Logout</button>
 </form>
 
 <form action="/analysis" method="post">
-    <input type="radio" name="plantName" value="pickling_cucumber"> Pickling cucumber<br>
+    <input type="radio" name="plantName" value="pickling_cucumber" required > Pickling cucumber<br>
     <button type="submit" name="analysis_button" id="analysis_button">Analyse!</button>
 </form>
 
