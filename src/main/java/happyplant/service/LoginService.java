@@ -11,31 +11,37 @@ import javax.servlet.http.HttpSession;
 @Service
 public class LoginService {
 
-    @Autowired
-    UserRepository userRepository;
+
+    final HttpSession session;
+
+    final UserRepository userRepository;
 
     @Autowired
-    HttpSession session;
+    public LoginService(HttpSession session, UserRepository userRepository) {
+        this.session = session;
+        this.userRepository = userRepository;
+    }
 
-    public String login(String email, String password) {
+    public boolean login(String email, String password) {
         Boolean isMatchingPassword = null;
 
         UserModel user = userRepository.findByEmail(email);
-        String hashed = user.getHashedPassword();
+        String hashed;;
 
         if (user == null) {
-            return "login";
+            return false;
         } else {
             if (user.getHashedPassword() != null) {
+                hashed  = user.getHashedPassword();
                 isMatchingPassword = checkPassword(password, hashed);
             }
         }
 
         if (isMatchingPassword) {
             session.setAttribute("user", user);
-            return "redirect:/";
+            return true;
         } else {
-            return "login";
+            return false;
         }
     }
 

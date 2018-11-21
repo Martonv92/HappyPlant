@@ -19,23 +19,27 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AnalysisController {
 
-    @Autowired
-    HttpSession session;
+    final HttpSession session;
+
+    final AnalysisRepository analysisRepository;
+
+    final PlanRepository planRepository;
+
+    final AnalysisService analysisService;
+
+    final PlanService planService;
 
     @Autowired
-    AnalysisRepository analysisRepository;
-
-    @Autowired
-    PlanRepository planRepository;
-
-    @Autowired
-    AnalysisService analysisService;
-
-    @Autowired
-    PlanService planService;
+    public AnalysisController(HttpSession session, AnalysisRepository analysisRepository, PlanRepository planRepository, AnalysisService analysisService, PlanService planService) {
+        this.session = session;
+        this.analysisRepository = analysisRepository;
+        this.planRepository = planRepository;
+        this.analysisService = analysisService;
+        this.planService = planService;
+    }
 
 
-    @GetMapping("/analysisGet")
+    @GetMapping("/analysisform")
     public String analysisGet() {
 
         if (session.getAttribute("user") == null) {
@@ -44,8 +48,8 @@ public class AnalysisController {
         return "analysisform";
     }
 
-    @GetMapping("/backToIndex")
-    public String backToIndex(){
+    @GetMapping("/backToIndexFromAnalysis")
+    public String backToIndexFromAnalysis(){
         return "redirect:/index";
     }
 

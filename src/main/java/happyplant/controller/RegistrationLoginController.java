@@ -15,14 +15,18 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class RegistrationLoginController {
 
-    @Autowired
-    HttpSession session;
+    final HttpSession session;
+
+    final RegistrationService registrationService;
+
+    final LoginService loginService;
 
     @Autowired
-    RegistrationService registrationService;
-
-    @Autowired
-    LoginService loginService;
+    public RegistrationLoginController(HttpSession session, RegistrationService registrationService, LoginService loginService) {
+        this.session = session;
+        this.registrationService = registrationService;
+        this.loginService = loginService;
+    }
 
     @GetMapping("/")
     public String basicGet() { return "/registrationlogin"; }
@@ -34,8 +38,12 @@ public class RegistrationLoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
-        loginService.login(email, password);
-        return "redirect:/index";
+        if(loginService.login(email, password)) {
+            return "redirect:/index";
+        } else {
+            return "/registrationlogin";
+        }
+
     }
 
     @PostMapping("/registration")
@@ -47,7 +55,7 @@ public class RegistrationLoginController {
         newUser.setEmail(email);
         newUser.setBackupEmail(backupEmail);
         newUser.setHashedPassword(password);
-        newUser.setAccessLevel(AccessLevel.USER);
+        //newUser.setAccessLevel(AccessLevel.USER);
         registrationService.registerUser(newUser);
         return "redirect:/registration";
     }

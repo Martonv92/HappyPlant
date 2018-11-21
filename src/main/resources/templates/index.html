@@ -6,5 +6,20 @@
 </head>
 <body>
 
+<a href="/plans">My plans</a>
+
+<form action="/logout" method="get">
+    <button type="submit" name="logout_button" id="logout_button">Logout</button>
+</form>
+
+<form action="/analysis" method="post">
+    <input type="radio" name="plantName" value="pickling_cucumber"> Pickling cucumber<br>
+    <button type="submit" name="analysis_button" id="analysis_button">Analyse!</button>
+</form>
+
+<form action="/deleteAccount" method="post">
+    <button type="submit" name="delete_button" id="delete_button">Delete account</button>
+</form>
+
 </body>
 </html>

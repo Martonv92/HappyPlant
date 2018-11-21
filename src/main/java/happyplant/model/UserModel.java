@@ -42,14 +42,14 @@ public class UserModel {
     @OneToMany(mappedBy = "user", targetEntity = AnalysisModel.class)
     private List<AnalysisModel> analyses;
 
-    @Enumerated
+    /*@Enumerated
     @NotEmpty
-    private AccessLevel accessLevel;
+    private AccessLevel accessLevel;*/
 
     public UserModel() {
     }
 
-    public UserModel(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String userName, @NotEmpty @Email String email, @NotEmpty @Email String backupEmail, @NotEmpty String hashedPassword, @NotEmpty AccessLevel accessLevel) {
+    public UserModel(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String userName, @NotEmpty @Email String email, @NotEmpty @Email String backupEmail, @NotEmpty String hashedPassword/*, @NotEmpty AccessLevel accessLevel*/) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -114,13 +114,13 @@ public class UserModel {
         this.backupEmail = backupEmail;
     }
 
-    public AccessLevel getAccessLevel() {
+    /*public AccessLevel getAccessLevel() {
         return accessLevel;
     }
 
     public void setAccessLevel(AccessLevel accessLevel) {
         this.accessLevel = accessLevel;
-    }
+    }*/
 
 
 }

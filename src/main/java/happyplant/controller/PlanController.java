@@ -13,14 +13,18 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PlanController {
 
-    @Autowired
-    HttpSession session;
+    final HttpSession session;
+
+    final AnalysisService analysisService;
+
+    final PlanService planService;
 
     @Autowired
-    AnalysisService analysisService;
-
-    @Autowired
-    PlanService planService;
+    public PlanController(HttpSession session, AnalysisService analysisService, PlanService planService) {
+        this.session = session;
+        this.analysisService = analysisService;
+        this.planService = planService;
+    }
 
 
     @GetMapping("/resultGet")
@@ -37,8 +41,8 @@ public class PlanController {
         return "redirect:/analysisform";
     }
 
-    @GetMapping("/backToIndex")
-    public String backToIndex(){
+    @GetMapping("/backToIndexFromPlan")
+    public String backToIndexFromPlan(){
         return "redirect:/index";
     }
 

@@ -4,6 +4,7 @@ import happyplant.model.PlanModel;
 import happyplant.model.PlantModel;
 import happyplant.model.UserModel;
 import happyplant.repository.PlanRepository;
+import happyplant.repository.PlantRepository;
 import happyplant.repository.UserRepository;
 import happyplant.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,27 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Autowired
-    HttpSession session;
+    final HttpSession session;
+
+    final PlanRepository planRepository;
+
+    final PlantRepository plantRepository;
+
+    final UserRepository userRepository;
+
+    final RegistrationService registrationService;
 
     @Autowired
-    PlanRepository planRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RegistrationService registrationService;
+    public IndexController(HttpSession session, PlantRepository plantRepository, PlanRepository planRepository, UserRepository userRepository, RegistrationService registrationService) {
+        this.session = session;
+        this.plantRepository = plantRepository;
+        this.planRepository = planRepository;
+        this.userRepository = userRepository;
+        this.registrationService = registrationService;
+    }
 
     @GetMapping("/index")
-    public String loginGet(){
+    public String indexGet(){
 
         if (session.getAttribute("user") == null){
             return "redirect:/registrationlogin";
@@ -46,7 +54,8 @@ public class IndexController {
     }
 
     @PostMapping("/analysis")
-    public String choosePlant(@RequestParam PlantModel plant){
+    public String choosePlant(@RequestParam String plantName){
+        PlantModel plant = plantRepository.findByPlantName(plantName);
         session.setAttribute("plant", plant);
         return "redirect:/analysisform";
     }
@@ -54,13 +63,15 @@ public class IndexController {
     @GetMapping("/logout")
     public String logout(){
         session.invalidate();
-        return "registration";
+        return "registrationlogin";
     }
 
     @PostMapping("/deleteAccount")
-    public String deleteAccount(@RequestParam("email") String email, @RequestParam("password") String password){
+    public String deleteAccount() {
+        UserModel user = (UserModel)session.getAttribute("user");
+        String email = user.getEmail();
         registrationService.deleteUser(userRepository.findByEmail(email));
         session.invalidate();
-        return "redirect:/registration";
+        return "redirect:/registrationlogin";
     }
 }
