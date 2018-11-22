@@ -15,8 +15,8 @@ public class PlanModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Temporal(TemporalType.DATE)
-    private Date planDate;
+    @NotEmpty
+    private String planDate;
 
     @ManyToOne
     private UserModel user;
@@ -58,7 +58,7 @@ public class PlanModel {
     public PlanModel() {
     }
 
-    public PlanModel(Date planDate, UserModel user, AnalysisModel analysisModel,
+    public PlanModel(String planDate, UserModel user, AnalysisModel analysisModel,
                      @Min(0) @Max(5000) @NotNull Double nitrogenResult,
                      @Min(0) @Max(5000) @NotNull Double phosphorusResult,
                      @Min(0) @Max(5000) @NotNull Double kaliumResult,
@@ -85,11 +85,11 @@ public class PlanModel {
         this.id = id;
     }
 
-    public Date getPlanDate() {
+    public String getPlanDate() {
         return planDate;
     }
 
-    public void setPlanDate(Date planDate) {
+    public void setPlanDate(String planDate) {
         this.planDate = planDate;
     }
 

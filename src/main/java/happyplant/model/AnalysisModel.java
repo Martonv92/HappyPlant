@@ -81,8 +81,16 @@ public class AnalysisModel {
 
     public PlanModel calculate(){
         Date date = new Date();
-        PlanModel result = new PlanModel(date, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);
+        String dateString = extractDate(date);
+        PlanModel result = new PlanModel(dateString, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);
         return result;
+    }
+
+    public String extractDate(Date date) {
+        String dateString = date.toString();
+        String[] dateParts = dateString.split(" ");
+        String toReturn = dateParts[5] + " " + dateParts[1] + " " + dateParts[2];
+        return toReturn;
     }
 
     public Integer getId() {

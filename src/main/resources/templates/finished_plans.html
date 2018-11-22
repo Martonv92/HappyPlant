@@ -27,6 +27,9 @@
         <td>No plans yet.</td>
     </tr>
     <tr th:case="false" >
+        <td><form action="/getSpecificPlan" method="post">
+            <button type="submit" name="id" id="plan_button" th:value = "${entry.id}">Inspect plan</button>
+        </form></td>
         <td><span th:text="${entry.plantType.getPlantName()}"> </span></td>
         <td><span th:text="${entry.planDate}">  </span></td>
         <td><span th:text="${entry.nitrogenResult}">  </span></td>
