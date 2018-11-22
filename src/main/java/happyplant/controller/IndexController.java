@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -41,20 +42,24 @@ public class IndexController {
     public String indexGet(){
 
         if (session.getAttribute("user") == null) {
-            session.setAttribute("viewMode", false);
-            if (session.getAttribute("plant") != null) {
-                session.removeAttribute("plant");
-            }
-            if (session.getAttribute("analysis") != null) {
-                session.removeAttribute("analysis");
-            }
-            PlanModel plan;
-            if (session.getAttribute("plan") != null) {
-                plan = (PlanModel) session.getAttribute("plan");
-                if (plan.isSaved())
-                    session.removeAttribute("plan");
-            }
             return "redirect:/registration";
+        }
+        session.setAttribute("viewMode", false);
+        if (session.getAttribute("plant") != null) {
+            session.removeAttribute("plant");
+        }
+        if (session.getAttribute("analysis") != null) {
+            session.removeAttribute("analysis");
+        }
+        PlanModel plan;
+        if (session.getAttribute("plan") != null) {
+            plan = (PlanModel) session.getAttribute("plan");
+            if (plan.isSaved())
+                session.removeAttribute("plan");
+        }
+        List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
+        if (session.getAttribute("plans") == null) {
+            session.setAttribute("plans", plans);
         }
         return "index";
     }

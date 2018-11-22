@@ -75,8 +75,6 @@ public class AnalysisController {
 
         AnalysisModel newAnalysis = new AnalysisModel((UserModel) session.getAttribute("user"), nitrogen, phosphorus, kalium, magnesium, calcium, ph, ec, area_hectar, tonsPerHectar, (PlantModel) session.getAttribute("plant"));
         PlanModel plan = newAnalysis.calculate();
-        List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
-        session.setAttribute("plans", plans);
         session.setAttribute("plan", plan);
         session.setAttribute("analysis", newAnalysis);
         return "plan";
