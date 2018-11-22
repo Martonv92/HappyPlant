@@ -11,4 +11,5 @@ import java.util.List;
 public interface PlanRepository extends JpaRepository<PlanModel, Integer> {
     List<PlanModel> findAllByUser(UserModel user);
     PlanModel findPlanModelById(Integer id);
+    PlanModel deletePlanModelById(Integer id);
 }

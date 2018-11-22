@@ -15,7 +15,6 @@ public class PlantModel {
     @GeneratedValue
     private Integer plantId;
 
-    @NotNull
     @NotEmpty
     private String plantName;
 

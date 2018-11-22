@@ -40,8 +40,20 @@ public class IndexController {
     @GetMapping("/index")
     public String indexGet(){
 
-        if (session.getAttribute("user") == null){
+        if (session.getAttribute("user") == null) {
             session.setAttribute("viewMode", false);
+            if (session.getAttribute("plant") != null) {
+                session.removeAttribute("plant");
+            }
+            if (session.getAttribute("analysis") != null) {
+                session.removeAttribute("analysis");
+            }
+            PlanModel plan;
+            if (session.getAttribute("plan") != null) {
+                plan = (PlanModel) session.getAttribute("plan");
+                if (plan.isSaved())
+                    session.removeAttribute("plan");
+            }
             return "redirect:/registration";
         }
         return "index";

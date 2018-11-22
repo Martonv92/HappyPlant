@@ -50,8 +50,9 @@ public class PlanModel {
     private Double calciumResult;
 
     @OneToOne
-    @NotEmpty
-    PlantModel plantType;
+    private PlantModel plantType;
+
+    boolean saved;
 
 
     public PlanModel() {
@@ -73,6 +74,7 @@ public class PlanModel {
         this.magnesiumResult = magnesiumResult;
         this.calciumResult = calciumResult;
         this.plantType = plantType;
+        this.saved = false;
     }
 
     public Integer getId() {
@@ -155,6 +157,13 @@ public class PlanModel {
         this.plantType = plantType;
     }
 
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
+    }
 }
 
 

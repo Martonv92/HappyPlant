@@ -22,18 +22,18 @@
         <th> Calcium result</th>
     </tr>
     </thead>
-    <tbody th:switch="${session.plans.isEmpty()}">
+    <tbody th:switch="${session.plans.isEmpty()}" th:each="entry : ${session.plans}">
     <tr th:case="true">
         <td>No plans yet.</td>
     </tr>
-    <tr th:case="false" th:each="plan : ${session.plans}">
-        <td><span th:text="${plan.plantType.getPlantName()}"> </span></td>
-        <td><span th:text="${plan.planDate}">  </span></td>
-        <td><span th:text="${plan.nitrogenResult}">  </span></td>
-        <td><span th:text="${plan.phosphorusResult}">  </span></td>
-        <td><span th:text="${plan.kaliumResult}">  </span></td>
-        <td><span th:text="${plan.magnesiumResult}">  </span></td>
-        <td><span th:text="${plan.calciumResult}">  </span></td>
+    <tr th:case="false" >
+        <td><span th:text="${entry.plantType.getPlantName()}"> </span></td>
+        <td><span th:text="${entry.planDate}">  </span></td>
+        <td><span th:text="${entry.nitrogenResult}">  </span></td>
+        <td><span th:text="${entry.phosphorusResult}">  </span></td>
+        <td><span th:text="${entry.kaliumResult}">  </span></td>
+        <td><span th:text="${entry.magnesiumResult}">  </span></td>
+        <td><span th:text="${entry.calciumResult}">  </span></td>
     </tr>
     </tbody>
 </table>

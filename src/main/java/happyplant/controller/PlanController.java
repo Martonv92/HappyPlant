@@ -73,12 +73,12 @@ public class PlanController {
 
     @PostMapping("/savePlan")
     public String savePlan(){
-        analysisService.addNewAnalysis((AnalysisModel) session.getAttribute("newAnalysis"));
+        analysisService.addNewAnalysis((AnalysisModel) session.getAttribute("analysis"));
         PlanModel newPlan = (PlanModel) session.getAttribute("plan");
+        newPlan.setSaved(true);
         planService.addNewPlan(newPlan);
         List<PlanModel> plans = planRepository.findAllByUser((UserModel)session.getAttribute("user"));
         session.setAttribute("plans", plans);
-        session.removeAttribute("plan");
         return "plan";
     }
 }
