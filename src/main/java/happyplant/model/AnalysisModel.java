@@ -74,6 +74,15 @@ public class AnalysisModel {
     }
 
     public PlanModel calculate(List<FertilizerModel> fertilizers){
+
+        Double nitrogenNeeded = plantType.getNitrogenNeeds()-nitrogen*0.1;
+        Double phosphorusNeeded = plantType.getPhosphorusNeeds()-phosphorus*0.6;
+        Double kaliumNeeded = plantType.getKaliumNeeds()-kalium*0.4;
+        if (fertilizers.size() == 1){
+            
+        } else if (fertilizers.size() > 1){
+
+        }
         Date date = new Date();
         String dateString = extractDate(date);
         PlanModel result = new PlanModel(dateString, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);

@@ -9,20 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import happyplant.service.RegistrationService;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class RegistrationLoginController {
 
-    final HttpSession session;
-
-    final RegistrationService registrationService;
-
-    final LoginService loginService;
+    private final RegistrationService registrationService;
+    private final LoginService loginService;
 
     @Autowired
-    public RegistrationLoginController(HttpSession session, RegistrationService registrationService, LoginService loginService) {
-        this.session = session;
+    public RegistrationLoginController(RegistrationService registrationService, LoginService loginService) {
         this.registrationService = registrationService;
         this.loginService = loginService;
     }
@@ -64,7 +58,6 @@ public class RegistrationLoginController {
         newUser.setEmail(email);
         newUser.setBackupEmail(backupEmail);
         newUser.setHashedPassword(password);
-        //newUser.setAccessLevel(AccessLevel.USER);
         registrationService.registerUser(newUser);
         return "redirect:/registration";
     }

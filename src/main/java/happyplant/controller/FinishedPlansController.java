@@ -8,18 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class FinishedPlansController {
 
-    @Autowired
-    PlanRepository planRepository;
+    private final PlanRepository planRepository;
+    private final HttpSession session;
 
     @Autowired
-    HttpSession session;
+    public FinishedPlansController(PlanRepository planRepository, HttpSession session) {
+        this.planRepository = planRepository;
+        this.session = session;
+    }
 
     @GetMapping("/finishedPlans")
     public String finishedPlansGet() {

@@ -17,15 +17,10 @@ import java.util.List;
 @Controller
 public class PlanController {
 
-    final HttpSession session;
-
-    final AnalysisService analysisService;
-
-    final PlanRepository planRepository;
-
-    final PlanService planService;
-
-
+    private final HttpSession session;
+    private final AnalysisService analysisService;
+    private final PlanRepository planRepository;
+    private final PlanService planService;
 
     @Autowired
     public PlanController(HttpSession session, AnalysisService analysisService, PlanRepository planRepository, PlanService planService) {
@@ -34,7 +29,6 @@ public class PlanController {
         this.planService = planService;
         this.planRepository = planRepository;
     }
-
 
     @GetMapping("/plan")
     public String planGet() {

@@ -19,15 +19,11 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    final HttpSession session;
-
-    final PlanRepository planRepository;
-
-    final PlantRepository plantRepository;
-
-    final UserRepository userRepository;
-
-    final RegistrationService registrationService;
+    private final HttpSession session;
+    private final PlanRepository planRepository;
+    private final PlantRepository plantRepository;
+    private final UserRepository userRepository;
+    private final RegistrationService registrationService;
 
     @Autowired
     public IndexController(HttpSession session, PlantRepository plantRepository, PlanRepository planRepository, UserRepository userRepository, RegistrationService registrationService) {

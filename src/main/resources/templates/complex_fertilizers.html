@@ -6,11 +6,42 @@
 </head>
 <body>
 
-<form action="/calculateWithFertilizer" method="post">
-    <input type="radio" name="fertilizerName" value="volldünger_graunlatum" required >Volldünger Granulátum<br>
-    <button type="submit" name="fertilizer_choice_button" id="fertilizer_choice_button">Calculate!</button>
+<form action="/logoutFromComplexFertilizers" method="get">
+    <button type="submit" name="logout_button" id="logout_button">Logout</button>
 </form>
 
+<table>
+    <thead>
+    <tr>
+        <th> </th>
+        <th> Name </th>
+        <th> Dealer </th>
+        <th> Nitrogen </th>
+        <th> Phosphorus </th>
+        <th> Kalium </th>
+        <th> Magnesium </th>
+        <th> Calcium </th>
+    </tr>
+    </thead>
+    <tbody th:each="entry : ${session.fertilizers}">
+    <tr>
+        <td><form action="/calculateWithFertilizer" method="post">
+            <button type="submit" name="fertilizer" id="fertilizer_button" th:value = "${entry.id}">Choose</button>
+        </form></td>
+        <td><span th:text="${entry.name}"> </span></td>
+        <td><span th:text="${entry.dealer}">  </span></td>
+        <td><span th:text="${entry.nitrogenContent}">  </span></td>
+        <td><span th:text="${entry.phosphorusContent}">  </span></td>
+        <td><span th:text="${entry.kaliumContent}">  </span></td>
+        <td><span th:text="${entry.magnesiumContent}">  </span></td>
+        <td><span th:text="${entry.calciumContent}">  </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/backToIndexFromComplexFertilizers" method="get">
+    <button type="submit" name="back_button" id="back_button">Back to index</button>
+</form>
 
 </body>
 </html>
