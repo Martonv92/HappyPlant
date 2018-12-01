@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fertilizer Type</title>
+</head>
+<body>
+Do you want to use a basal fertilizer?
+
+<form action="/fertilizerType" method="post" >
+    <br>
+    <input type="radio" name="fertilizerType" value="mono_fertilizer" required >I want to use only mono fertilizers<br>
+    <input type="radio" name="fertilizerType" value="complex_fertilizer" required >I want to use complex fertilizers<br>
+    <input type="radio" name="fertilizerType" value="no_basal_fertilizer" required >I don't want to use any basal fertilizers<br>
+    <button type="submit" name="fertilizer_submit_button" id="fertilizer_submit_button">Submit</button>
+</form>
+
+</body>
+</html>

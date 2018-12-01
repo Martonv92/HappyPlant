@@ -1,6 +1,5 @@
 package happyplant.controller;
 
-import happyplant.model.AccessLevel;
 import happyplant.model.UserModel;
 import happyplant.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,6 +5,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "AnalysisModel")
@@ -72,7 +73,7 @@ public class AnalysisModel {
         this.plantType = plantType;
     }
 
-    public PlanModel calculate(){
+    public PlanModel calculate(List<FertilizerModel> fertilizers){
         Date date = new Date();
         String dateString = extractDate(date);
         PlanModel result = new PlanModel(dateString, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);
