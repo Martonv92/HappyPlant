@@ -19,37 +19,30 @@ public class AnalysisModel {
 
     @Min(0)
     @Max(5000)
-    @NotNull
     private Double nitrogen;
 
     @Min(0)
     @Max(5000)
-    @NotNull
     private Double phosphorus;
 
     @Min(0)
     @Max(5000)
-    @NotNull
     private Double kalium;
 
     @Min(0)
     @Max(5000)
-    @NotNull
     private Double magnesium;
 
     @Min(0)
     @Max(5000)
-    @NotNull
     private Double calcium;
 
     @Min(0)
     @Max(12)
-    @NotNull
     private Double PH;
 
     @Min(0)
     @Max(20)
-    @NotNull
     private Double EC;
 
     @NotNull

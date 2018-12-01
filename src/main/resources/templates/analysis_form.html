@@ -14,17 +14,22 @@
     <button type="submit" name="back_button" id="back_button">Back to index</button>
 </form>
 
+
 <form action="/calculate" method="post">
-    <input type="number" step="any" name="nitrogen" max="5000" required>Nitrogen<br>
-    <input type="number" step="any" name="phosphorus" max="5000" required>Phosphorus<br>
-    <input type="number" step="any" name="kalium" max="5000" required>Kalium<br>
-    <input type="number" step="any" name="magnesium" max="5000" required>Magnesium<br>
-    <input type="number" step="any" name="calcium" max="5000" required>Calcium<br>
-    <input type="number" step="any" name="ph" max="12" required>pH<br>
-    <input type="number" step="any" name="ec" max="20" required>EC<br>
+
+    <br>
     <input type="number" step="any" name="area_hectar" max="100000" required>Area (in hectars)<br>
     <input type="number" step="any" name="tonsPerHectar" th:attr = "max = ${session.plantMaxYield}"  required> <p th:text="'Yield per hectar (in tons) - max for your plant is ' + ${session.plantMaxYield} + ' tons'"></p><br>
+    <input type="number" step="any" name="nitrogen" value=0 max="5000" required>Nitrogen<br>
+    <input type="number" step="any" name="phosphorus" value=0 max="5000" required>Phosphorus<br>
+    <input type="number" step="any" name="kalium" value=0 max="5000" required>Kalium<br>
+    <input type="number" step="any" name="magnesium" value=0 max="5000" required>Magnesium<br>
+    <input type="number" step="any" name="calcium" value=0 max="5000" required>Calcium<br>
+    <input type="number" step="any" name="ph" value=7 max="12" required>pH<br>
+    <input type="number" step="any" name="ec" value=1 max="20" required>EC<br>
+    <br>
     <button type="submit" name="analysis_submit_button" id="analysis_submit_button">Calculate!</button>
+
 </form>
 
 </body>
