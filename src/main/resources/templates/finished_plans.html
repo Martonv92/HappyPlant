@@ -13,13 +13,8 @@
 <table>
     <thead>
     <tr>
-        <th> Plant </th>
         <th> Date </th>
-        <th> Nitrogen </th>
-        <th> Phosphorus </th>
-        <th> Kalium </th>
-        <th> Magnesium </th>
-        <th> Calcium </th>
+        <th> Plant </th>
     </tr>
     </thead>
     <tbody th:switch="${session.plans.isEmpty()}" th:each="entry : ${session.plans}">
@@ -29,14 +24,9 @@
     <tr th:case="false" >
         <td><form action="/getSpecificPlan" method="post">
             <button type="submit" name="id" id="plan_button" th:value = "${entry.id}">Inspect plan</button>
-        </form></td>
-        <td><span th:text="${entry.plantType.getPlantName()}"> </span></td>
+            </form></td>
         <td><span th:text="${entry.planDate}">  </span></td>
-        <td><span th:text="${entry.nitrogenResult}">  </span></td>
-        <td><span th:text="${entry.phosphorusResult}">  </span></td>
-        <td><span th:text="${entry.kaliumResult}">  </span></td>
-        <td><span th:text="${entry.magnesiumResult}">  </span></td>
-        <td><span th:text="${entry.calciumResult}">  </span></td>
+        <td><span th:text="${entry.plantType.getPlantName()}"> </span></td>
     </tr>
     </tbody>
 </table>

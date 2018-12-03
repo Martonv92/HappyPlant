@@ -35,6 +35,27 @@
     </tr>
     </tbody>
 </table>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th> Fertilizer </th>
+        <th> Dealer </th>
+        <th> Per Hectar </th>
+        <th> Total </th>
+    </tr>
+    </thead>
+    <tbody th:each="fertilizer,iterStat : ${session.plan.fertilizerList.size()}" >
+        <td><form action="/getSpecificFertilizer" method="post">
+            <button type="submit" name="id" id="fertilizer_button" th:value = "${}">Inspect product</button>
+            </form></td>
+        <td><span th:text="${session.plan.fertilizerList[iterStat.index].name}"></span></td>
+        <td><span th:text="${session.plan.fertilizerList[iterStat.index].dealer}"></span></td>
+        <td><span th:text="${session.plan.fertilizerAmount[iterStat.index][0]}"></span> - <span th:text="${session.plan.fertilizerAmount[iterStat.index][1]}"></span></td>
+        <td><span th:text="${session.plan.fertilizerAmountPerHectar[iterStat.index][0]}"></span> - <span th:text="${session.plan.fertilizerAmountPerHectar[iterStat.index][1]}"></span></td>
+    </tbody>
+
+</table>
 
 <span th:if = "${session.viewMode == false}">
     <form action="/savePlan" method="post">

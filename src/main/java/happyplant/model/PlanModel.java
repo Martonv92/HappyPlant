@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "PlanModel")
@@ -52,6 +53,15 @@ public class PlanModel {
     @OneToOne
     private PlantModel plantType;
 
+    @OneToMany
+    private List<FertilizerModel> fertilizerList;
+
+    @OneToMany
+    private List<Double[]> fertilizerAmount;
+
+    @OneToMany
+    private List<Double[]> fertilizerAmountPerHectar;
+
     boolean saved;
 
 
@@ -64,7 +74,10 @@ public class PlanModel {
                      @Min(0) @Max(5000) @NotNull Double kaliumResult,
                      @Min(0) @Max(5000) @NotNull Double magnesiumResult,
                      @Min(0) @Max(5000) @NotNull Double calciumResult,
-                     PlantModel plantType) {
+                     PlantModel plantType,
+                     List<FertilizerModel> fertilizerList,
+                     List<Double[]> fertilizerAmount,
+                     List<Double[]> fertilizerAmountPerHectar) {
         this.planDate = planDate;
         this.user = user;
         this.analysisModel = analysisModel;
@@ -74,6 +87,9 @@ public class PlanModel {
         this.magnesiumResult = magnesiumResult;
         this.calciumResult = calciumResult;
         this.plantType = plantType;
+        this.fertilizerList = fertilizerList;
+        this.fertilizerAmount = fertilizerAmount;
+        this.fertilizerAmountPerHectar = fertilizerAmountPerHectar;
         this.saved = false;
     }
 
@@ -155,6 +171,30 @@ public class PlanModel {
 
     public void setPlantType(PlantModel plantType) {
         this.plantType = plantType;
+    }
+
+    public List<FertilizerModel> getFertilizerList() {
+        return fertilizerList;
+    }
+
+    public void setFertilizerList(List<FertilizerModel> fertilizerList) {
+        this.fertilizerList = fertilizerList;
+    }
+
+    public List<Double[]> getFertilizerAmount() {
+        return fertilizerAmount;
+    }
+
+    public void setFertilizerAmount(List<Double[]> fertilizerAmount) {
+        this.fertilizerAmount = fertilizerAmount;
+    }
+
+    public List<Double[]> getFertilizerAmountPerHectar() {
+        return fertilizerAmountPerHectar;
+    }
+
+    public void setFertilizerAmountPerHectar(List<Double[]> fertilizerAmountPerHectar) {
+        this.fertilizerAmountPerHectar = fertilizerAmountPerHectar;
     }
 
     public boolean isSaved() {
