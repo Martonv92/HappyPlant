@@ -20,42 +20,55 @@ public class FertilizerModel {
     private FertilizerType fertilizerType;
 
     @Min(0)
-    @Max(5000)
-    private Double nitrogenContent;
+    @Max(40)
+    private Double nitrogenContentPercentage;
 
     @Min(0)
-    @Max(5000)
-    private Double phosphorusContent;
+    @Max(55)
+    private Double phosphorusContentPercentage;
 
     @Min(0)
-    @Max(5000)
-    private Double kaliumContent;
-
-    @Min(0)
-    @Max(5000)
-    private Double magnesiumContent;
-
-    @Min(0)
-    @Max(5000)
-    private Double calciumContent;
+    @Max(55)
+    private Double kaliumContentPercentage;
 
     @Min(0)
     @Max(25)
-    private Integer dkgPerM2;
+    private Double magnesiumContentPercentage;
+
+    @Min(0)
+    @Max(10)
+    private Double calciumContentPercentage;
+
+    @Min(0)
+    @Max(25)
+    private Integer minDkgPerM2;
+
+    @Min(0)
+    @Max(25)
+    private Integer maxDkgPerM2;
 
     public FertilizerModel() {
     }
 
-    public FertilizerModel(String dealer, String name, FertilizerType fertilizerType, @Min(0) @Max(5000) Double nitrogenContent, @Min(0) @Max(5000) Double phosphorusContent, @Min(0) @Max(5000) Double kaliumContent, @Min(0) @Max(5000) Double magnesiumContent, @Min(0) @Max(5000) Double calciumContent, @Min(0) @Max(12) Integer dkgPerM2) {
+    public FertilizerModel(String dealer, String name,
+                           FertilizerType fertilizerType,
+                           @Min(0) @Max(5000) Double nitrogenContentPercentage,
+                           @Min(0) @Max(5000) Double phosphorusContentPercentage,
+                           @Min(0) @Max(5000) Double kaliumContentPercentage,
+                           @Min(0) @Max(5000) Double magnesiumContentPercentage,
+                           @Min(0) @Max(5000) Double calciumContentPercentage,
+                           @Min(0) @Max(25) Integer minDkgPerM2,
+                           @Min(0) @Max(12) Integer maxDkgPerM2) {
         this.dealer = dealer;
         this.name = name;
         this.fertilizerType = fertilizerType;
-        this.nitrogenContent = nitrogenContent;
-        this.phosphorusContent = phosphorusContent;
-        this.kaliumContent = kaliumContent;
-        this.magnesiumContent = magnesiumContent;
-        this.calciumContent = calciumContent;
-        this.dkgPerM2 = dkgPerM2;
+        this.nitrogenContentPercentage = nitrogenContentPercentage;
+        this.phosphorusContentPercentage = phosphorusContentPercentage;
+        this.kaliumContentPercentage = kaliumContentPercentage;
+        this.magnesiumContentPercentage = magnesiumContentPercentage;
+        this.calciumContentPercentage = calciumContentPercentage;
+        this.minDkgPerM2 = minDkgPerM2;
+        this.maxDkgPerM2 = maxDkgPerM2;
     }
 
     public Integer getId() {
@@ -90,51 +103,59 @@ public class FertilizerModel {
         this.fertilizerType = fertilizerType;
     }
 
-    public Double getNitrogenContent() {
-        return nitrogenContent;
+    public Double getNitrogenContentPercentage() {
+        return nitrogenContentPercentage;
     }
 
-    public void setNitrogenContent(Double nitrogenContent) {
-        this.nitrogenContent = nitrogenContent;
+    public void setNitrogenContentPercentage(Double nitrogenContentPercentage) {
+        this.nitrogenContentPercentage = nitrogenContentPercentage;
     }
 
-    public Double getPhosphorusContent() {
-        return phosphorusContent;
+    public Double getPhosphorusContentPercentage() {
+        return phosphorusContentPercentage;
     }
 
-    public void setPhosphorusContent(Double phosphorusContent) {
-        this.phosphorusContent = phosphorusContent;
+    public void setPhosphorusContentPercentage(Double phosphorusContentPercentage) {
+        this.phosphorusContentPercentage = phosphorusContentPercentage;
     }
 
-    public Double getKaliumContent() {
-        return kaliumContent;
+    public Double getKaliumContentPercentage() {
+        return kaliumContentPercentage;
     }
 
-    public void setKaliumContent(Double kaliumContent) {
-        this.kaliumContent = kaliumContent;
+    public void setKaliumContentPercentage(Double kaliumContentPercentage) {
+        this.kaliumContentPercentage = kaliumContentPercentage;
     }
 
-    public Double getMagnesiumContent() {
-        return magnesiumContent;
+    public Double getMagnesiumContentPercentage() {
+        return magnesiumContentPercentage;
     }
 
-    public void setMagnesiumContent(Double magnesiumContent) {
-        this.magnesiumContent = magnesiumContent;
+    public void setMagnesiumContentPercentage(Double magnesiumContentPercentage) {
+        this.magnesiumContentPercentage = magnesiumContentPercentage;
     }
 
-    public Double getCalciumContent() {
-        return calciumContent;
+    public Double getCalciumContentPercentage() {
+        return calciumContentPercentage;
     }
 
-    public void setCalciumContent(Double calciumContent) {
-        this.calciumContent = calciumContent;
+    public void setCalciumContentPercentage(Double calciumContentPercentage) {
+        this.calciumContentPercentage = calciumContentPercentage;
     }
 
-    public Integer getDkgPerM2() {
-        return dkgPerM2;
+    public Integer getMinDkgPerM2() {
+        return minDkgPerM2;
     }
 
-    public void setDkgPerM2(Integer dkgPerM2) {
-        this.dkgPerM2 = dkgPerM2;
+    public void setMinDkgPerM2(Integer minDkgPerM2) {
+        this.minDkgPerM2 = minDkgPerM2;
+    }
+
+    public Integer getMaxDkgPerM2() {
+        return maxDkgPerM2;
+    }
+
+    public void setMaxDkgPerM2(Integer maxDkgPerM2) {
+        this.maxDkgPerM2 = maxDkgPerM2;
     }
 }

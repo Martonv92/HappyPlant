@@ -34,7 +34,7 @@ public class Initializer {
         return (String... args) -> {
             UserModel admin = new UserModel("Marci", "Varga", "admin", "martonv92@gmail.com", "ssajtocska@gmail.com", "marci");
             PlantModel cucumber = new PlantModel("pickling_cucumber", 5.5, 2.0, 180, 20, 180, 486.0, 252.0, 720.0, 252.0, 400.0, "https://parkseed.com/images/xxl/05510-pk-p1.jpg");
-            FertilizerModel volldunger_granulatum = new FertilizerModel("Kwizda", "Volldünger Granulátum", FertilizerType.BASAL_COMPLEX_FERTILIZER, 6.0, 10.0, 21.0, 9.0, 2.0, 15);
+            FertilizerModel volldunger_granulatum = new FertilizerModel("Kwizda", "Volldünger Granulátum", FertilizerType.BASAL_COMPLEX_FERTILIZER, 6.0, 10.0, 21.0, 9.0, 2.0, 10, 15);
             userRepository.save(admin);
             plantRepository.save(cucumber);
         };

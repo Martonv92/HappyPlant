@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -75,21 +77,69 @@ public class AnalysisModel {
 
     public PlanModel calculate(List<FertilizerModel> fertilizers){
 
-        Double nitrogenNeeded = plantType.getNitrogenNeeds()-nitrogen*0.1;
-        Double phosphorusNeeded = plantType.getPhosphorusNeeds()-phosphorus*0.6;
-        Double kaliumNeeded = plantType.getKaliumNeeds()-kalium*0.4;
+        Double nitrogenNeeded = (plantType.getNitrogenNeedsInKgPerHa()-nitrogen)*0.1;
+        Double phosphorusNeeded = (plantType.getPhosphorusNeedsInKgPerHa()-phosphorus)*0.6;
+        Double kaliumNeeded = (plantType.getKaliumNeedsInKgPerHa()-kalium)*0.4;
+        Double magnesiumNeeded = (plantType.getMagnesiumNeedsInKgPerHa()-magnesium)*0.5;
+        Double calciumNeeded = (plantType.getCalciumNeedsInKgPerHa()-calcium)*0.1;
+
+        Double[] plantNeeds = {nitrogenNeeded, phosphorusNeeded, kaliumNeeded};
+
         if (fertilizers.size() == 1){
-            
+            FertilizerModel fertilizer = fertilizers.get(0);
+            Double[] fertilizerData = {fertilizer.getNitrogenContentPercentage(), fertilizer.getPhosphorusContentPercentage(), fertilizer.getKaliumContentPercentage()};
+            getBasalFertilizer(plantNeeds, fertilizerData, fertilizer.getMinDkgPerM2(), fertilizer.getMaxDkgPerM2());
+
+            Date date = new Date();
+            String dateString = extractDate(date);
+            PlanModel result = new PlanModel(dateString, user, this, nitrogenNeeded, phosphorusNeeded, kaliumNeeded, magnesiumNeeded, calciumNeeded, this.plantType, );
+            return result;
+
+
+
         } else if (fertilizers.size() > 1){
 
         }
-        Date date = new Date();
-        String dateString = extractDate(date);
-        PlanModel result = new PlanModel(dateString, user, this, nitrogen, phosphorus, kalium, magnesium, calcium, this.plantType);
-        return result;
+
     }
 
-    public String extractDate(Date date) {
+    private Integer[] getBasalFertilizer(Double[] plantNeeds, Double[] fertilizerData, Integer minDkgPerM2, Integer maxDkgPerM2) {
+        Integer[] minMaxFertilizerAmountInKilos = {null, null};
+        Double smallestValue = plantNeeds[0];
+        if (plantNeeds[1] < smallestValue && plantNeeds[1] < plantNeeds[2]){
+            smallestValue = plantNeeds[1];
+            minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[1]),0);
+            minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[1]),0);
+            return minMaxFertilizerAmountInKilos;
+
+        }
+        if (plantNeeds[2] < smallestValue){
+            smallestValue = plantNeeds[2];
+            minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[2]),0);
+            minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[2]),0);
+            return minMaxFertilizerAmountInKilos;
+
+        }
+        minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[0]),0);
+        minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[0]),0);
+
+        return minMaxFertilizerAmountInKilos;
+    }
+
+    public static Integer round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.intValue();
+    }
+
+    private Double findMaxAmountOfBasalFertilizerInTonsPerHectar(Double smallestValue, Integer dkgPerM2, Double nutrientContent) {
+        int kgPerHa = dkgPerM2 * 100;
+        return smallestValue / nutrientContent * kgPerHa;
+    }
+
+    private String extractDate(Date date) {
         String dateString = date.toString();
         String[] dateParts = dateString.split(" ");
         String toReturn = dateParts[5] + " " + dateParts[1] + " " + dateParts[2];

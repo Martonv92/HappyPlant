@@ -34,19 +34,19 @@ public class PlantModel {
     private Integer maxYieldInTonsPerHectar;
 
     @NotNull
-    private Double nitrogenNeeds;
+    private Double nitrogenNeedsInKgPerHa;
 
     @NotNull
-    private Double phosphorusNeeds;
+    private Double phosphorusNeedsInKgPerHa;
 
     @NotNull
-    private Double kaliumNeeds;
+    private Double kaliumNeedsInKgPerHa;
 
     @NotNull
-    private Double magnesiumNeeds;
+    private Double magnesiumNeedsInKgPerHa;
 
     @NotNull
-    private Double calciumNeeds;
+    private Double calciumNeedsInKgPerHa;
 
     @NotEmpty
     private String imageURL;
@@ -58,7 +58,7 @@ public class PlantModel {
     public PlantModel(@NotNull @NotEmpty String plantName,
                       @NotNull Double idealPH, @NotNull Double idealEC,
                       @NotNull Integer daysUntilHarvest, @NotNull Integer rootDepthInCentimeters, @NotNull Integer maxYieldInTonsPerHectar,
-                      @NotNull Double nitrogenNeeds, @NotNull Double phosphorusNeeds, @NotNull Double kaliumNeeds, @NotNull Double magnesiumNeeds, @NotNull Double calciumNeeds,
+                      @NotNull Double nitrogenNeedsInKgPerHa, @NotNull Double phosphorusNeedsInKgPerHa, @NotNull Double kaliumNeedsInKgPerHa, @NotNull Double magnesiumNeedsInKgPerHa, @NotNull Double calciumNeedsInKgPerHa,
                       @NotEmpty String imageURL) {
         this.plantName = plantName;
         this.idealPH = idealPH;
@@ -66,11 +66,11 @@ public class PlantModel {
         this.daysUntilHarvest = daysUntilHarvest;
         this.rootDepthInCentimeters = rootDepthInCentimeters;
         this.maxYieldInTonsPerHectar = maxYieldInTonsPerHectar;
-        this.nitrogenNeeds = nitrogenNeeds;
-        this.phosphorusNeeds = phosphorusNeeds;
-        this.kaliumNeeds = kaliumNeeds;
-        this.magnesiumNeeds = magnesiumNeeds;
-        this.calciumNeeds = calciumNeeds;
+        this.nitrogenNeedsInKgPerHa = nitrogenNeedsInKgPerHa;
+        this.phosphorusNeedsInKgPerHa = phosphorusNeedsInKgPerHa;
+        this.kaliumNeedsInKgPerHa = kaliumNeedsInKgPerHa;
+        this.magnesiumNeedsInKgPerHa = magnesiumNeedsInKgPerHa;
+        this.calciumNeedsInKgPerHa = calciumNeedsInKgPerHa;
         this.imageURL = imageURL;
     }
 
@@ -131,44 +131,44 @@ public class PlantModel {
         this.maxYieldInTonsPerHectar = maxYieldInTonsPerHectar;
     }
 
-    public Double getNitrogenNeeds() {
-        return nitrogenNeeds;
+    public Double getNitrogenNeedsInKgPerHa() {
+        return nitrogenNeedsInKgPerHa;
     }
 
-    public void setNitrogenNeeds(Double nitrogenNeeds) {
-        this.nitrogenNeeds = nitrogenNeeds;
+    public void setNitrogenNeedsInKgPerHa(Double nitrogenNeedsInKgPerHa) {
+        this.nitrogenNeedsInKgPerHa = nitrogenNeedsInKgPerHa;
     }
 
-    public Double getPhosphorusNeeds() {
-        return phosphorusNeeds;
+    public Double getPhosphorusNeedsInKgPerHa() {
+        return phosphorusNeedsInKgPerHa;
     }
 
-    public void setPhosphorusNeeds(Double phosphorusNeeds) {
-        this.phosphorusNeeds = phosphorusNeeds;
+    public void setPhosphorusNeedsInKgPerHa(Double phosphorusNeedsInKgPerHa) {
+        this.phosphorusNeedsInKgPerHa = phosphorusNeedsInKgPerHa;
     }
 
-    public Double getKaliumNeeds() {
-        return kaliumNeeds;
+    public Double getKaliumNeedsInKgPerHa() {
+        return kaliumNeedsInKgPerHa;
     }
 
-    public void setKaliumNeeds(Double kaliumNeeds) {
-        this.kaliumNeeds = kaliumNeeds;
+    public void setKaliumNeedsInKgPerHa(Double kaliumNeedsInKgPerHa) {
+        this.kaliumNeedsInKgPerHa = kaliumNeedsInKgPerHa;
     }
 
-    public Double getMagnesiumNeeds() {
-        return magnesiumNeeds;
+    public Double getMagnesiumNeedsInKgPerHa() {
+        return magnesiumNeedsInKgPerHa;
     }
 
-    public void setMagnesiumNeeds(Double magnesiumNeeds) {
-        this.magnesiumNeeds = magnesiumNeeds;
+    public void setMagnesiumNeedsInKgPerHa(Double magnesiumNeedsInKgPerHa) {
+        this.magnesiumNeedsInKgPerHa = magnesiumNeedsInKgPerHa;
     }
 
-    public Double getCalciumNeeds() {
-        return calciumNeeds;
+    public Double getCalciumNeedsInKgPerHa() {
+        return calciumNeedsInKgPerHa;
     }
 
-    public void setCalciumNeeds(Double calciumNeeds) {
-        this.calciumNeeds = calciumNeeds;
+    public void setCalciumNeedsInKgPerHa(Double calciumNeedsInKgPerHa) {
+        this.calciumNeedsInKgPerHa = calciumNeedsInKgPerHa;
     }
 
     public String getImage() {
