@@ -56,13 +56,13 @@ public class PlanModel {
     @OneToMany
     private List<FertilizerModel> fertilizerList;
 
-    @OneToMany
+    @ElementCollection
     private List<Double[]> fertilizerAmount;
 
-    @OneToMany
+    @ElementCollection
     private List<Double[]> fertilizerAmountPerHectar;
 
-    boolean saved;
+    private boolean saved;
 
 
     public PlanModel() {

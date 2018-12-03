@@ -1,5 +1,7 @@
 package happyplant.model;
 
+import org.decimal4j.util.DoubleRounder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -78,19 +80,26 @@ public class AnalysisModel {
 
     public PlanModel calculate(List<FertilizerModel> fertilizers){
 
-        Double nitrogenNeeded = (plantType.getNitrogenNeedsInKgPerHa()-nitrogen)*0.1;
-        Double phosphorusNeeded = (plantType.getPhosphorusNeedsInKgPerHa()-phosphorus)*0.6;
-        Double kaliumNeeded = (plantType.getKaliumNeedsInKgPerHa()-kalium)*0.4;
-        Double magnesiumNeeded = (plantType.getMagnesiumNeedsInKgPerHa()-magnesium)*0.5;
-        Double calciumNeeded = (plantType.getCalciumNeedsInKgPerHa()-calcium)*0.1;
+        Double nitrogenNeededLimes = (plantType.getNitrogenNeedsInKgPerHa()-nitrogen)*0.1;
+        Double phosphorusNeededLimes = (plantType.getPhosphorusNeedsInKgPerHa()-phosphorus)*0.6;
+        Double kaliumNeededLimes = (plantType.getKaliumNeedsInKgPerHa()-kalium)*0.4;
+        Double magnesiumNeededLimes = (plantType.getMagnesiumNeedsInKgPerHa()-magnesium)*0.5;
+        Double calciumNeededLimes = (plantType.getCalciumNeedsInKgPerHa()-calcium)*0.1;
+
+        Double nitrogenNeeded = (plantType.getNitrogenNeedsInKgPerHa()-nitrogen);
+        Double phosphorusNeeded = (plantType.getPhosphorusNeedsInKgPerHa()-phosphorus);
+        Double kaliumNeeded = (plantType.getKaliumNeedsInKgPerHa()-kalium);
+        Double magnesiumNeeded = (plantType.getMagnesiumNeedsInKgPerHa()-magnesium);
+        Double calciumNeeded = (plantType.getCalciumNeedsInKgPerHa()-calcium);
 
         List<Double[]> fertilizerAmountList = new ArrayList<>();
         List<Double[]> fertilizerAmountPerHectarList = new ArrayList<>();
-        Double[] plantNeeds = {nitrogenNeeded, phosphorusNeeded, kaliumNeeded};
+
+        Double[] plantNeeds = {nitrogenNeededLimes, phosphorusNeededLimes, kaliumNeededLimes};
 
         if (fertilizers.size() == 1){
             FertilizerModel fertilizer = fertilizers.get(0);
-            Double[][] basalFertilizerMinMaxAmount = getBasalFertilizer(plantNeeds, fertilizer.getMinDkgPerM2(), fertilizer.getMaxDkgPerM2());
+            Double[][] basalFertilizerMinMaxAmount = getBasalFertilizer(plantNeeds, fertilizer);
             fertilizerAmountList.add(basalFertilizerMinMaxAmount[0]);
             fertilizerAmountPerHectarList.add(basalFertilizerMinMaxAmount[1]);
 
@@ -104,50 +113,51 @@ public class AnalysisModel {
         return new PlanModel();
     }
 
-    private Double[][] getBasalFertilizer(Double[] plantNeeds, Integer minDkgPerM2, Integer maxDkgPerM2) {
+    private Double[][] getBasalFertilizer(Double[] plantNeeds, FertilizerModel fertilizer) {
         Double[][] results = {null, null};
         Double[] minMaxFertilizerAmountInKilos = {null, null};
-        Double[] minMaxFertilizerAmountInKilosPerHectar = {null, null};
+        Double[] minMaxFertilizerAmountInTonsPerHectar = {null, null};
         Double smallestValue = plantNeeds[0];
         if (plantNeeds[1] < smallestValue && plantNeeds[1] < plantNeeds[2]){
             smallestValue = plantNeeds[1];
-            minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[1]),2)*userAreaInHectar;
-            minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[1]),2)*userAreaInHectar;
-            return getDoubles(plantNeeds, minDkgPerM2, maxDkgPerM2, results, minMaxFertilizerAmountInKilos, minMaxFertilizerAmountInKilosPerHectar, smallestValue);
+            minMaxFertilizerAmountInKilos[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getPhosphorusContentPercentage())*userAreaInHectar;
+            minMaxFertilizerAmountInKilos[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getPhosphorusContentPercentage())*userAreaInHectar;
+            minMaxFertilizerAmountInTonsPerHectar[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getPhosphorusContentPercentage())/1000;
+            minMaxFertilizerAmountInTonsPerHectar[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getPhosphorusContentPercentage())/1000;
+            results[0] = minMaxFertilizerAmountInKilos;
+            results[1] = minMaxFertilizerAmountInTonsPerHectar;
+            return results;
 
         }
         if (plantNeeds[2] < smallestValue){
             smallestValue = plantNeeds[2];
-            minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[2]),2)*userAreaInHectar;
-            minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[2]),2)*userAreaInHectar;
-            return getDoubles(plantNeeds, minDkgPerM2, maxDkgPerM2, results, minMaxFertilizerAmountInKilos, minMaxFertilizerAmountInKilosPerHectar, smallestValue);
+            minMaxFertilizerAmountInKilos[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getKaliumContentPercentage())*userAreaInHectar;
+            minMaxFertilizerAmountInKilos[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getKaliumContentPercentage())*userAreaInHectar;
+            minMaxFertilizerAmountInTonsPerHectar[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getKaliumContentPercentage())/1000;
+            minMaxFertilizerAmountInTonsPerHectar[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getKaliumContentPercentage())/1000;
+            results[0] = minMaxFertilizerAmountInKilos;
+            results[1] = minMaxFertilizerAmountInTonsPerHectar;
+            return results;
 
         }
-        minMaxFertilizerAmountInKilos[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[0]),2)*userAreaInHectar;
-        minMaxFertilizerAmountInKilos[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[0]),2)*userAreaInHectar;
-        return getDoubles(plantNeeds, minDkgPerM2, maxDkgPerM2, results, minMaxFertilizerAmountInKilos, minMaxFertilizerAmountInKilosPerHectar, smallestValue);
-    }
-
-    private Double[][] getDoubles(Double[] plantNeeds, Integer minDkgPerM2, Integer maxDkgPerM2, Double[][] results, Double[] minMaxFertilizerAmountInKilos, Double[] minMaxFertilizerAmountInKilosPerHectar, Double smallestValue) {
-        minMaxFertilizerAmountInKilosPerHectar[0] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, minDkgPerM2, plantNeeds[1]),2);
-        minMaxFertilizerAmountInKilosPerHectar[1] = round(findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, maxDkgPerM2, plantNeeds[1]),2);
+        //minMaxFertilizerAmountInKilos[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getNitrogenContentPercentage())*userAreaInHectar;
+        //minMaxFertilizerAmountInKilos[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getNitrogenContentPercentage())*userAreaInHectar;
+        minMaxFertilizerAmountInTonsPerHectar[0] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMinDkgPerM2(), fertilizer.getNitrogenContentPercentage())/1000;
+        minMaxFertilizerAmountInTonsPerHectar[1] = findMaxAmountOfBasalFertilizerInTonsPerHectar(smallestValue, fertilizer.getMaxDkgPerM2(), fertilizer.getNitrogenContentPercentage())/1000;
+        minMaxFertilizerAmountInKilos[0] = minMaxFertilizerAmountInTonsPerHectar[0]*userAreaInHectar;
+        minMaxFertilizerAmountInKilos[1] = minMaxFertilizerAmountInTonsPerHectar[1]*userAreaInHectar;
         results[0] = minMaxFertilizerAmountInKilos;
-        results[1] = minMaxFertilizerAmountInKilosPerHectar;
+        results[1] = minMaxFertilizerAmountInTonsPerHectar;
         return results;
     }
 
-    private static Double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
-
     private Double findMaxAmountOfBasalFertilizerInTonsPerHectar(Double smallestValue, Integer dkgPerM2, Double nutrientContent) {
-        int kgPerHa = dkgPerM2 * 100;
-        return smallestValue / nutrientContent * kgPerHa;
+        int dkgPerHa = dkgPerM2 * 10000;
+        int kgPerHa = dkgPerHa / 100;
+        Double result = DoubleRounder.round(smallestValue / (nutrientContent * kgPerHa), 3);
+        return result;
     }
+
 
     private String extractDate(Date date) {
         String dateString = date.toString();

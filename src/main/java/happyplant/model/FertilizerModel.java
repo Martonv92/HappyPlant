@@ -3,6 +3,7 @@ package happyplant.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "FertilizerModel")
@@ -12,8 +13,10 @@ public class FertilizerModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotEmpty
     private String dealer;
 
+    @NotEmpty
     private String name;
 
     @Enumerated

@@ -22,8 +22,8 @@ public class ComplexFertilizersController {
         this.session = session;
     }
 
-    @GetMapping("/fertilizer_questions")
-    public String fertilizerQuestionsGet() {
+    @GetMapping("/complex_fertilizer_questions")
+    public String complexFertilizerQuestionsGet() {
 
         if (session.getAttribute("user") == null) {
             return "redirect:/registration_login";
